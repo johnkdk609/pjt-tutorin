@@ -19,14 +19,16 @@ USE `mydb` ;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`user` (
   `id` VARCHAR(20) NOT NULL,
-  `nickname` VARCHAR(20) NOT NULL,
   `password` VARCHAR(20) NOT NULL,
-  `name` VARCHAR(20) NOT NULL,
   `email` VARCHAR(45) NOT NULL,
+  `name` VARCHAR(20) NOT NULL,
+  `nickname` VARCHAR(20) NOT NULL,
   `phoneNum` BIGINT NOT NULL,
-  `menteeIntro` TEXT NULL,
   `image` BLOB NULL,
+  `menteeIntro` TEXT NULL,
   `status` ENUM('1', '2') NULL DEFAULT '1',
+  `create_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_time` TIMESTAMP NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
   UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE)
@@ -44,6 +46,8 @@ CREATE TABLE IF NOT EXISTS `mydb`.`mentor` (
   `accountFee` INT NOT NULL,
   `reviewNum` INT NULL DEFAULT 0,
   `reviewGrade` FLOAT NULL DEFAULT 0,
+  `create_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_time` TIMESTAMP NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_mentor_user_idx` (`id` ASC) VISIBLE,
   CONSTRAINT `fk_mentor_user`
@@ -52,14 +56,6 @@ CREATE TABLE IF NOT EXISTS `mydb`.`mentor` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `mydb`.`timestamps`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`timestamps` (
-  `create_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
-  `update_time` TIMESTAMP NULL);
 
 
 -- -----------------------------------------------------
