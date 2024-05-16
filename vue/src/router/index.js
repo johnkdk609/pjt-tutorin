@@ -32,178 +32,195 @@ import ASFormR from "@/components/counsel/ASFormR.vue";
 import DoneFormE from "@/components/counsel/DoneFormE.vue";
 import DoneFormR from "@/components/counsel/DoneFormR.vue";
 
+import ViewWithHeader from "@/views/ViewWithHeader.vue";
+import ViewWithoutHeader from "@/views/ViewWithoutHeader.vue";
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: "/",
-      name: "home",
-      component: HomeView,
-    },
-    {
-      path: "/login",
-      name: "login",
-      component: LoginView,
-    },
-    {
-      path: "/regist",
-      name: "regist",
-      component: RegistView,
-    },
-    {
-      path: "/my",
-      name: "mypage",
-      component: MyView,
+      component: ViewWithHeader,
       children: [
         {
           path: "",
-          name: "myhome",
-          component: MyHomeView,
+          name: "home",
+          component: HomeView,
         },
         {
-          path: "modify",
-          name: "modify",
-          component: MyModifyView,
+          path: "login",
+          name: "login",
+          component: LoginView,
         },
         {
-          path: "modifyprofile",
-          name: "modifyprofile",
-          component: MyModifyProfileView,
+          path: "regist",
+          name: "regist",
+          component: RegistView,
         },
+        
         {
-          path: "request",
-          name: "request",
-          component: MyRequestView,
-          children: [
-            {
-              path: "wait",
-              name: "reqwait",
-              component: RequestWaitView,
-            },
-            {
-              path: "reqproceed",
-              name: "reqproceed",
-              component: RequestProceedView,
-            },
-            {
-              path: "reqdone",
-              name: "reqdone",
-              component: RequestDoneView,
-            },
-          ],
-        },
-        {
-          path: "response",
-          name: "response",
-          component: MyResponseView,
-          children: [
-            {
-              path: "wait",
-              name: "reswait",
-              component: ResponseWaitView,
-            },
-            {
-              path: "resproceed",
-              name: "resproceed",
-              component: ResponseProceedView,
-            },
-            {
-              path: "resdone",
-              name: "resdone",
-              component: ResponseDoneView,
-            },
-          ],
-        },
-        {
-          path: "etc",
-          name: "etc",
-          component: MyEtcView,
-        },
-      ],
-    },
-    {
-      path: "/regist",
-      name: "regist",
-      component: RegistView,
-    },
-    {
-      path: "/profile/mentee",
-      name: "mentee_profile",
-      component: MenteeProfileView,
-    },
-    {
-      path: "/profile/mentor",
-      name: "mentor_profile",
-      component: MentorProfileView,
-    },
-    {
-      path: "/counsel",
-      children: [
-        {
-          path: "write",
+          path: "counsel/write",
           name: "writeform",
           component: WriteForm,
         },
 
         {
-          path: "wait",
+          path: "my",
+          name: "mypage",
+          component: MyView,
           children: [
             {
-              path: "e",
-              name: "waitformE",
-              component: WaitFormE,
+              path: "",
+              name: "myhome",
+              component: MyHomeView,
             },
             {
-              path: "r",
-              name: "waitformR",
-              component: WaitFormR,
+              path: "modify",
+              name: "modify",
+              component: MyModifyView,
+            },
+            {
+              path: "modifyprofile",
+              name: "modifyprofile",
+              component: MyModifyProfileView,
+            },
+            {
+              path: "request",
+              name: "request",
+              component: MyRequestView,
+              children: [
+                {
+                  path: "wait",
+                  name: "reqwait",
+                  component: RequestWaitView,
+                },
+                {
+                  path: "reqproceed",
+                  name: "reqproceed",
+                  component: RequestProceedView,
+                },
+                {
+                  path: "reqdone",
+                  name: "reqdone",
+                  component: RequestDoneView,
+                },
+              ],
+            },
+            {
+              path: "response",
+              name: "response",
+              component: MyResponseView,
+              children: [
+                {
+                  path: "wait",
+                  name: "reswait",
+                  component: ResponseWaitView,
+                },
+                {
+                  path: "resproceed",
+                  name: "resproceed",
+                  component: ResponseProceedView,
+                },
+                {
+                  path: "resdone",
+                  name: "resdone",
+                  component: ResponseDoneView,
+                },
+              ],
+            },
+            {
+              path: "etc",
+              name: "etc",
+              component: MyEtcView,
             },
           ],
         },
+        {
+          path: "regist",
+          name: "regist",
+          component: RegistView,
+        },
+        {
+          path: "profile/mentee",
+          name: "mentee_profile",
+          component: MenteeProfileView,
+        },
+        {
+          path: "profile/mentor",
+          name: "mentor_profile",
+          component: MentorProfileView,
+        },
+      ],
+    },
 
+    {
+      path: "/out",
+      component: ViewWithoutHeader,
+      children: [
         {
-          path: "proceed",
+          path: "counsel",
           children: [
             {
-              path: "e",
-              name: "proceedformE",
-              component: ProceedFormE,
+              path: "wait",
+              children: [
+                {
+                  path: "e/:id",
+                  name: "waitformE",
+                  component: WaitFormE,
+                },
+                {
+                  path: "r/:id",
+                  name: "waitformR",
+                  component: WaitFormR,
+                },
+              ],
             },
-            {
-              path: "r",
-              name: "proceedformR",
-              component: ProceedFormR,
-            },
-          ],
-        },
-        {
-          path: "as",
-          children: [
-            {
-              path: "e",
-              name: "asformE",
-              component: ASFormE,
-            },
-            {
-              path: "r",
-              name: "asformR",
-              component: ASFormR,
-            },
-          ],
-        },
 
-        {
-          path: "done",
-          children: [
             {
-              path: "e",
-              name: "doneformE",
-              component: DoneFormE,
+              path: "proceed",
+              children: [
+                {
+                  path: "e/:id",
+                  name: "proceedformE",
+                  component: ProceedFormE,
+                },
+                {
+                  path: "r/:id",
+                  name: "proceedformR",
+                  component: ProceedFormR,
+                },
+              ],
             },
             {
-              path: "r",
-              name: "doneformR",
-              component: DoneFormR,
+              path: "as",
+              children: [
+                {
+                  path: "e/:id",
+                  name: "asformE",
+                  component: ASFormE,
+                },
+                {
+                  path: "r/:id",
+                  name: "asformR",
+                  component: ASFormR,
+                },
+              ],
+            },
+
+            {
+              path: "done",
+              children: [
+                {
+                  path: "e/:id",
+                  name: "doneformE",
+                  component: DoneFormE,
+                },
+                {
+                  path: "r/:id",
+                  name: "doneformR",
+                  component: DoneFormR,
+                },
+              ],
             },
           ],
         },

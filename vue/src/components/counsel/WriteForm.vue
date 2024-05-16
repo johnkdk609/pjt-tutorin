@@ -4,7 +4,7 @@
     <div class="content">내용</div>
     <div
       class="button"
-      onclick="location.href='http://localhost:5173/my/request';"
+      onclick="location.href='http://localhost:5173/my/request/wait';"
       @click="send"
     >
       <h3>결제 및 전송</h3>
