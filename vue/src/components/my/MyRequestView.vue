@@ -17,7 +17,6 @@
 .content {
   background-color: rgb(255, 254, 214);
   margin: 20px;
-  height: 500px;
 }
 
 </style>

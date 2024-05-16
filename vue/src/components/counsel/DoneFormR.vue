@@ -1,7 +1,10 @@
 <template>
-  <h1>1번상담완료 내용</h1>
+  <h1>{{store.counsel.id}}번 상담완료 내용</h1>
   <div class="context">
-    <p>질문답변어쩌고 들어갈 곳</p>
+    <p>멘티: {{ store.counsel.menteeId }}</p>
+    <p>멘토: {{ store.counsel.mentorId }}</p>
+    <p>제목: {{ store.counsel.title }}</p>
+    <p>질문 내용: {{ store.counsel.content }}</p>
 
     <div class="modal" ref="modal" @click="closeModalOutside">
       <div class="modal_body" @click.stop>
@@ -12,13 +15,30 @@
     </div>
     <button class="btn-open-modal" @click="openModal">리뷰 보기</button>
     <br />
-    <button class="btn-open-modal" @click="open">추가 답변 하기</button>
+    <button class="btn-open-modal" @click="open(store.counsel.id)">추가 답변 하기</button>
   </div>
 </template>
 
-<script setup>
-import { ref } from "vue";
+<script setup>import { useRoute } from 'vue-router'
+import { useCounselStore } from "@/stores/counsel";
+import { onMounted, ref } from "vue";
 
+const store = useCounselStore();
+const route = useRoute();
+
+onMounted(() => {
+    store.getCounsel(route.params.id)
+})
+
+
+// 새 창 열기
+const open = function (id) {
+  const URL = "http://localhost:5173/out/counsel/as/r/" + id;
+  window.open(URL, "_blank", "width=1000, height=700");
+};
+
+
+// 모달 부분
 const modal = ref(null);
 
 const openModal = () => {
@@ -33,14 +53,6 @@ const closeModalOutside = (event) => {
   if (event.target === modal.value) {
     closeModal();
   }
-};
-
-const open = function () {
-  window.open(
-    "http://localhost:5173/counsel/as/r",
-    "_blank",
-    "width=1000, height=700"
-  );
 };
 </script>
 
