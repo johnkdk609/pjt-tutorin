@@ -1,6 +1,6 @@
 <template>
     <div>
-      <h1>개인 정보 변경</h1>
+      <h1>개인 정보 수정</h1>
       <div class="content">
           <h3>hi</h3>
       </div>

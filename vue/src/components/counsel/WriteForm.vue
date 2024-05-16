@@ -9,6 +9,10 @@
     >
       <h3>결제 및 전송</h3>
     </div>
+
+    <div class="button" onclick="history.back()">
+      <h3>뒤로가기</h3>
+    </div>
   </div>
 </template>
 

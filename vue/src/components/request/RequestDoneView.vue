@@ -1,17 +1,31 @@
 <template>
   <div>
     <h3>상담 완료 내역입니다</h3>
-    <div
-      class="button"
-      onclick="location.href='http://localhost:5173/my/request/counsel/view';"
-    >
+    <div class="button" @click="open">
       <h3>1번 상담</h3>
     </div>
+
+    <div class="button">
+      <h3>2번 상담</h3>
+    </div>
+    <div class="button">
+      <h3>3번 상담</h3>
+    </div>
+    <div class="button">
+      <h3>4번 상담</h3>
+    </div>
   </div>
-  <RouterView/>
 </template>
 
-<script setup></script>
+<script setup>
+const open = function () {
+  window.open(
+    "http://localhost:5173/counsel/done/e",
+    "_blank",
+    "width=1000, height=700"
+  );
+};
+</script>
 
 <style scoped>
 .button {
@@ -20,7 +34,7 @@
   border: 1px solid rgb(228, 228, 228); /* 검은색 테두리 추가 */
   text-align: center;
   cursor: pointer;
-  padding: 10px 20px;
+  /* padding: 10px 20px; */
   width: 80%;
   margin-left: auto;
   margin-right: auto;

@@ -7,9 +7,9 @@
       <hr>
       <RouterLink to="/my/modifyprofile">프로필 수정</RouterLink>
       <hr>
-      <RouterLink to="/my/request">상담 신청 내역</RouterLink>
+      <RouterLink to="/my/request/wait">상담 신청 내역</RouterLink>
       <hr>
-      <RouterLink to="/my/response">상담 수령 내역</RouterLink>
+      <RouterLink to="/my/response/wait">상담 수령 내역</RouterLink>
       <hr>
       <RouterLink to="/my/etc">기타</RouterLink>
     </nav>
