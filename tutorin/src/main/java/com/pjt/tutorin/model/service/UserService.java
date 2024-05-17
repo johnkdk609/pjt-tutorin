@@ -25,9 +25,9 @@ public interface UserService {
 	// 사용자 검색
 	public List<User> searchUser(SearchCondition condition);
 
-	// 로그인 
-	public User login(User user);
-
 	// 회원가입
 	public int signup(User user);
+	
+	// refresh-token 사용한 로그인 
+	public User loginUser(User user);
 }

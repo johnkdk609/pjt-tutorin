@@ -1,13 +1,15 @@
 package com.pjt.tutorin.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -18,16 +20,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.pjt.tutorin.annotation.AuthRequired;
 import com.pjt.tutorin.model.dto.SearchCondition;
 import com.pjt.tutorin.model.dto.User;
 import com.pjt.tutorin.model.service.UserService;
 import com.pjt.tutorin.util.JwtUtil;
 
 import io.swagger.v3.oas.annotations.Operation;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 @RestController
 @RequestMapping("/api-user")
-@CrossOrigin(origins = "*")
 public class UserController {
 
 	
@@ -36,6 +41,7 @@ public class UserController {
 	
 	@Autowired
 	JwtUtil jwt;
+	
 	
 	
 	/*
@@ -105,26 +111,6 @@ public class UserController {
 	}
 	
 	
-	/*
-	 * 로그인
-	 */
-	@Operation(summary = "JWT를 이용한 로그인", description = "JWT를 이용해 로그인 합니다.")
-	@PostMapping("/login")
-	public ResponseEntity<?> login(@RequestBody User user) {
-		User tmp = userService.login(user);
-		
-		if (tmp != null) {
-			
-			String token = jwt.createToken(user.getEmail());
-			Map<String, Object> map = new HashMap<>();
-			map.put("access-token", token);
-			map.put("user", tmp);
-			
-			return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
-		}
-		return new ResponseEntity<Void>(HttpStatus.UNAUTHORIZED);
-	}
-	
 	
 	/*
 	 * 회원가입
@@ -140,20 +126,59 @@ public class UserController {
 	}
 	
 	
+	/*
+	 * Refrest-Token을 이용한 로그인 최종 구현
+	 */
+	@Value("${jwt.refreshtoken.expiretime}")
+	private int refreshTokenExpireTime;
+	
+	@PostMapping("/login")
+	public ResponseEntity<?> login(@RequestBody User user, HttpServletResponse response) throws UnsupportedEncodingException {
+		
+		Map<String, Object> result = new HashMap<>();
+		
+		// DB에서 유저 가져오기
+		User dbUser = userService.loginUser(user);
+		
+		// 일치하는 유저가 없다면 UNAUTHORIZED 반환.
+		if(dbUser == null) {
+			result.put("message", "일치하는 유저가 없습니다.");
+			return new ResponseEntity<Map<String, Object>>(result, HttpStatus.UNAUTHORIZED);
+		}
+		
+		// 있으면 Token 발급
+		// AccessToken, RefreshToken 두 개를 발급해준다.
+		String accessToken = jwt.createAccessToken(dbUser.getId());
+		String refreshToken = jwt.createRefreshToken(dbUser.getId());
+		
+		Cookie cookie = new Cookie("refreshToken", refreshToken);
+		cookie.setMaxAge(refreshTokenExpireTime);
+		cookie.setHttpOnly(true);
+		cookie.setPath("/");
+		response.addCookie(cookie);
+		
+		result.put("accessToken", accessToken);
+		result.put("name", dbUser.getName());
+		
+		
+		return new ResponseEntity<>(result, HttpStatus.ACCEPTED);
+	}
+		
+		
+	@AuthRequired // 토큰이 있어야지만 접근 가능한 메서드.
+	@GetMapping("/mypage")
+	ResponseEntity<?> mypage(HttpServletRequest request) throws ParseException{
+		String accessToken = request.getHeader("Authorization");
+		String userId = jwt.getUserId(accessToken);
+		
+		return new ResponseEntity<String>(userId, HttpStatus.OK);
+	}
+		
+	@GetMapping("/refresh")
+	ResponseEntity<?> refreshToken(){
+				
+		return null;
+	}
+	
+	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,36 +1,89 @@
 package com.pjt.tutorin.util;
 
-import java.nio.charset.StandardCharsets;
+import java.io.UnsupportedEncodingException;
+import java.util.Base64;
 import java.util.Date;
 
-import javax.crypto.SecretKey;
-
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jws;
+import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.security.Keys;
+import io.jsonwebtoken.SignatureAlgorithm;
 
+	
 @Component
 public class JwtUtil {
-	private String SALT = "SSAFY_NonMajor_JavaTrack_SecretKey";
-	// Q. HMAC 알고리즘을 활용하여 주어진 키를 암호키로 변경한다.
-	private SecretKey secretKey = Keys.hmacShaKeyFor(SALT.getBytes(StandardCharsets.UTF_8));
-
-	public String createToken(String email) {
-		//Q. JWT builder 메서드를 통해 완성해 보겠다.
-		//[헤더] typ : JWT
-		//[페이로드] email 정보, 만료시간 1시간
-		//[디지털서명] 위에서 작성한 키를 이용하여 암호화 한다.
-		Date exp = new Date(System.currentTimeMillis() + 1000 * 60 * 60); // 1시간
-		return Jwts.builder().header().add("typ", "JWT").and().claim("email", email).expiration(exp).signWith(secretKey)
-				.compact();
+	
+	@Value("${jwt.key}")
+	private String jwtKey;
+	
+	@Value("${jwt.accesstoken.expiretime}")
+	private Long accessTokenExpireTime;
+	
+	@Value("${jwt.refreshtoken.expiretime}")
+	private Long refreshTokenExpireTime;
+	
+	public String createAccessToken(String userId) throws UnsupportedEncodingException {
+		System.out.println("jwt: ");
+		System.out.println(jwtKey);
+		
+		long currentTime = System.currentTimeMillis(); // 현재시간
+		
+		JwtBuilder jwtAccessTokenBuilder = Jwts.builder();
+		
+		jwtAccessTokenBuilder.claim("userId", userId);
+		jwtAccessTokenBuilder.setIssuedAt(new Date(currentTime));
+		jwtAccessTokenBuilder.setExpiration(new Date(currentTime + accessTokenExpireTime*1000));
+		jwtAccessTokenBuilder.signWith(SignatureAlgorithm.HS256, jwtKey.getBytes("UTF-8"));
+		
+		return jwtAccessTokenBuilder.compact();
+	}
+	
+	public String createRefreshToken(String userId) throws UnsupportedEncodingException {
+		long currentTime = System.currentTimeMillis(); // 현재시간
+		
+		JwtBuilder jwtRefreshTokenBuilder = Jwts.builder();
+		
+		jwtRefreshTokenBuilder.claim("userId", userId);
+		jwtRefreshTokenBuilder.setIssuedAt(new Date(currentTime));
+		jwtRefreshTokenBuilder.setExpiration(new Date(currentTime + refreshTokenExpireTime*1000));
+		jwtRefreshTokenBuilder.signWith(SignatureAlgorithm.HS256, jwtKey.getBytes("UTF-8"));
+		
+		return jwtRefreshTokenBuilder.compact();
+	}
+	
+	public String getUserId(String token) throws ParseException {
+		// accessToken을 .을 기준으로 자른다.
+		String[] chunks = token.split("\\."); // split안에는 정규표현식을 넣어야 하므로.
+		// . == \\.
+		
+		Base64.Decoder decoder = Base64.getUrlDecoder();
+		
+		String payload = new String(decoder.decode(chunks[1]));
+		System.out.println(payload);
+		JSONParser parser = new JSONParser();
+		JSONObject obj = (JSONObject) parser.parse(payload);
+		System.out.println(obj);
+		String userId = (String)obj.get("userId");
+		System.out.println(userId);
+		return userId;
+	}
+	
+	public boolean validCheck(String token){
+		
+		try {
+			System.out.println(token);
+			Jwts.parser().setSigningKey(jwtKey.getBytes("UTF-8")).parseClaimsJws(token);
+		} catch(Exception e) { // token을 파싱하는데 에러가 발생했다면 유효한 토큰이 아님.
+			System.out.println(e);
+			return false;
+		}
+		System.out.println("valid");
+		return true;
 	}
 
-
-	public Jws<Claims> validate(String token) {
-		//Q. JWT parser 메서드를 통해 클레임을 가져온다.
-		return Jwts.parser().verifyWith(secretKey).build().parseSignedClaims(token);
-	}
 }
