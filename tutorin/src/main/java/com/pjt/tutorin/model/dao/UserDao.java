@@ -29,6 +29,6 @@ public interface UserDao {
 	public int regist(User user);
 
 	// 로그인
-	public User login(User user);
+	public User loginUser(User user);
 	
 }

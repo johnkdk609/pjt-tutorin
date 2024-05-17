@@ -50,19 +50,15 @@ public class UserServiceImpl implements UserService {
 		return userDao.searchUser(condition);
 	}
 
-	@Override
-	public User login(User user) {
-		User tmp = userDao.login(user);
-		if (tmp != null) {
-			tmp.setAccessToken(jwtUtil.createToken(tmp.getEmail()));
-		}
-		return tmp;
-	}
-
 	@Transactional
 	@Override
 	public int signup(User user) {
 		return userDao.regist(user);
+	}
+
+	@Override
+	public User loginUser(User user) {
+		return userDao.loginUser(user);
 	}
 
 }
