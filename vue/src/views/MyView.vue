@@ -18,7 +18,7 @@ import TheMyNav from "@/components/common/TheMyNav.vue";
 .nav {
   width: 150px;
   height: 500px;
-  background-color: rgb(224, 238, 250);
+  background-color: aliceblue;
 }
 .my {
   display: flex;
@@ -31,6 +31,6 @@ import TheMyNav from "@/components/common/TheMyNav.vue";
   margin-right: 20px;
   margin-top: 0; /* 위쪽 여백 제거 */
   margin-bottom: 0; /* 아래쪽 여백 제거 */
-  background-color: rgb(164, 255, 255);
+  background-color: rgb(212, 235, 255);
 }
 </style>

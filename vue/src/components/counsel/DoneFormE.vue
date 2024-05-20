@@ -8,8 +8,12 @@
 
     <div class="modal" ref="modal" @click="closeModalOutside">
       <div class="modal_body" @click.stop>
-        <h2>어떠셨나요?</h2>
-        <p>글내용</p>
+
+        <p>별점: {{ store.counsel.reviewStar }}</p>
+        <p>내용: {{ store.counsel.reviewContent }}</p>
+        <input type="int" placeholder="별점" v-model="reviewInputStar"/>
+        <input type="text" placeholder="내용" v-model="reviewInputContent"/>
+        <button @click="review">수정</button>
         <button @click="closeModal()">닫기</button>
       </div>
     </div>
@@ -26,11 +30,20 @@ import { onMounted, ref } from "vue";
 
 const store = useCounselStore();
 const route = useRoute();
+const reviewInputStar = ref();
+const reviewInputContent = ref();
 
 onMounted(() => {
     store.getCounsel(route.params.id)
 })
 
+const review = () => {
+  store.counsel.reviewStar = reviewInputStar;
+  store.counsel.reviewContent = reviewInputContent;
+  store.reviewCounsel();
+  alert('수정이 완료되었습니다');
+  window.location.reload();
+}
 
 // 새 창 열기
 const open = function (id) {

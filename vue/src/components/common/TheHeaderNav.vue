@@ -19,7 +19,7 @@
 
 <style scoped>
 header {
-  background-color: rgb(224, 238, 250);
+  background-color: aliceblue;
   height: 100px;
 }
 
