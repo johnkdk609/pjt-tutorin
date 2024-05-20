@@ -19,7 +19,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgb(224, 238, 250);
+    background-color: aliceblue;
     height: 50px;
 }
 </style>

@@ -1,7 +1,6 @@
 <template>
   <div>
     <h1>상담 신청 내역</h1>
-    <p>부트스트랩 이용?</p>
     <div class="content">
       <RouterLink :to="{ name: 'reqwait' }">대기</RouterLink> |
       <RouterLink :to="{ name: 'reqproceed' }">진행</RouterLink> |

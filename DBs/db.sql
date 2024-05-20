@@ -80,7 +80,6 @@ CREATE TABLE IF NOT EXISTS `mydb`.`counsel` (
   `review_star` INT NULL,
   `review_content` TEXT(50) NULL,
   `create_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
-  `update_time` TIMESTAMP NULL,
   `accept_time` TIMESTAMP NULL,
   `answer_time` TIMESTAMP NULL,
   `feedback_time` TIMESTAMP NULL,
@@ -124,6 +123,20 @@ CREATE TABLE IF NOT EXISTS `mydb`.`video` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+
+DELIMITER //
+
+CREATE TRIGGER set_accept_time
+BEFORE INSERT ON counsel
+FOR EACH ROW
+BEGIN
+  IF NEW.create_time IS NULL THEN
+    SET NEW.create_time = CURRENT_TIMESTAMP;
+  END IF;
+  SET NEW.accept_time = DATE_ADD(NEW.create_time, INTERVAL 1 DAY);
+END; //
+
+DELIMITER ;
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

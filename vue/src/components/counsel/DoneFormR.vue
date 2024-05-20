@@ -5,11 +5,12 @@
     <p>멘토: {{ store.counsel.mentorId }}</p>
     <p>제목: {{ store.counsel.title }}</p>
     <p>질문 내용: {{ store.counsel.content }}</p>
+    <p>답변 내용: {{ store.counsel.answerContent }}</p>
 
     <div class="modal" ref="modal" @click="closeModalOutside">
       <div class="modal_body" @click.stop>
-        <h2>어떠셨나요?</h2>
-        <p>글내용</p>
+        <p>별점: {{ store.counsel.reviewStar }}</p>
+        <p>내용: {{ store.counsel.reviewcontent }}</p>
         <button @click="closeModal()">닫기</button>
       </div>
     </div>
@@ -29,7 +30,6 @@ const route = useRoute();
 onMounted(() => {
     store.getCounsel(route.params.id)
 })
-
 
 // 새 창 열기
 const open = function (id) {

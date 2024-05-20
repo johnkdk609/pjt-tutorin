@@ -1,15 +1,23 @@
 <template>
   <div>
-    <h1>폼 작성하기</h1>
-    <div class="content">내용</div>
-    <div
-      class="button"
-      onclick="location.href='http://localhost:5173/my/request/wait';"
-      @click="send"
-    >
+    <h1>상담 신청하기</h1>
+    <div class="content">
+      <h3>내용</h3>
+      <input type="text" placeholder="누구가(수정예정)" v-model="store.counsel.menteeId" />
+      |
+      <input type="text" placeholder="누구에게(수정예정)" v-model="store.counsel.mentorId" />
+      <p></p>
+      <input type="text" placeholder="제목" v-model="store.counsel.title" />
+      <p></p>
+      <input type="text" placeholder="내용" v-model="store.counsel.content" />
+      <p></p>
+      <input type="text" placeholder="비디오(수정예정)" v-model="store.counsel.video" />
+    </div>
+    <p></p>
+    <div class="button" @click="send">
       <h3>결제 및 전송</h3>
     </div>
-
+    <p></p>
     <div class="button" onclick="history.back()">
       <h3>뒤로가기</h3>
     </div>
@@ -17,8 +25,13 @@
 </template>
 
 <script setup>
-const send = function () {
-  alert("결제가 완료되었습니다 (상담 신청 내역으로 이동)");
+import { useCounselStore } from "@/stores/counsel";
+import { useRouter } from "vue-router";
+const store = useCounselStore();
+const router = useRouter();
+
+const send = () => {
+  store.postCounsel(router); // 라우터 인스턴스를 전달하여 메서드 내에서 사용
 };
 </script>
 
@@ -26,18 +39,20 @@ const send = function () {
 .content {
   background-color: aliceblue;
   text-align: center; /* 가운데 정렬 */
-  height: 500px;
+  padding: 20px;
 }
 
 .button {
+  border-radius: 20px; /* 둥근 버튼을 만들기 위해 픽셀 단위를 사용 */
   background-color: yellowgreen;
   color: white;
   text-align: center;
   cursor: pointer;
   padding: 10px 20px;
-  width: 30%;
+  width: 300px; /* 버튼의 너비를 내용에 맞추기 */
   margin-left: auto;
   margin-right: auto;
+  display: block; /* 중앙 정렬을 위해 block 요소로 변경 */
 }
 
 .button:hover {
