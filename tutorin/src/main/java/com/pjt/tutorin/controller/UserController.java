@@ -32,7 +32,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 @RestController
-@RequestMapping("/api-user")
+@RequestMapping("/user")
 public class UserController {
 
 	
@@ -134,7 +134,8 @@ public class UserController {
 	
 	@PostMapping("/login")
 	public ResponseEntity<?> login(@RequestBody User user, HttpServletResponse response) throws UnsupportedEncodingException {
-		
+		System.out.println("loginHandler");
+		System.out.println(user);
 		Map<String, Object> result = new HashMap<>();
 		
 		// DB에서 유저 가져오기

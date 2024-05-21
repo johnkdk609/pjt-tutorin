@@ -34,6 +34,8 @@ import DoneFormR from "@/components/counsel/DoneFormR.vue";
 
 import ViewWithHeader from "@/views/ViewWithHeader.vue";
 import ViewWithoutHeader from "@/views/ViewWithoutHeader.vue";
+import { useLoginStore } from '@/stores/login'
+import PrivateView from "@/views/PrivateView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -51,6 +53,11 @@ const router = createRouter({
           path: "login",
           name: "login",
           component: LoginView,
+        },
+        {
+          path: '/private',
+          name: 'private',
+          component: PrivateView
         },
         {
           path: "regist",
@@ -228,5 +235,16 @@ const router = createRouter({
     },
   ],
 });
+
+// navigation guard
+router.beforeEach((to, from) => {
+  const loginStore = useLoginStore();
+
+  if( to.name === "private"&& loginStore.accessToken === ''){
+    return {name: "login"}
+  }
+  // 탐색을 취소하려면 명시적으로 false를 반환해야 함.
+  return true;
+})
 
 export default router;
