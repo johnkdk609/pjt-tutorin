@@ -1,14 +1,18 @@
 <template>
   <div>
-    <div
-      class="button" @click="open(counsel.id)" v-for="counsel in completedCounselList" :key="counsel.id">
+    <div class="button" @click="open(counsel.id)" v-for="counsel in completedCounselList" :key="counsel.id">
       <div class="mentor">
         <img class="rounded-image" src="@/assets/main.jpg" alt="프로필 사진" />
         <h5>멘토 {{ counsel.mentorId }}</h5>
       </div>
       <div class="content">
         <h1>{{ counsel.title }}</h1>
-        <h5>추가 질문 마감 시간 : {{ counsel.acceptTime }}</h5>
+        <h5>
+          질문 등록 시간 : {{ counsel.createTime }}
+          <span v-if="counsel.status === 3 || counsel.status === 4">
+            &nbsp;&nbsp; | &nbsp;&nbsp; 추가 질문 마감 시간 : {{ counsel.acceptTime }}
+          </span>
+        </h5>
       </div>
       <div class="status">
         <div :class="store.getStatusClass(counsel.status)">
@@ -21,12 +25,12 @@
 </template>
 
 <script setup>
-import { useCounselStore } from "@/stores/counsel";
-import { onMounted, computed } from "vue";
+import {useCounselStore} from "@/stores/counsel";
+import {onMounted, computed} from "vue";
 
 const open = function (id) {
   const URL = "http://localhost:5173/out/counsel/done/r/" + id;
-  window.open(URL, "_blank", "width=1000, height=700");
+  window.open(URL, "_blank", "width=700, height=700");
 };
 
 const store = useCounselStore();
@@ -37,7 +41,7 @@ onMounted(() => {
 
 const completedCounselList = computed(() => {
   return store.counselList
-    .filter((counsel) => [3, 4, 5, 6].includes(counsel.status))
+    .filter((counsel) => [3, 4, 5, 6, 7].includes(counsel.status))
     .sort((a, b) => new Date(b.feedbackTime) - new Date(a.feedbackTime));
 });
 </script>

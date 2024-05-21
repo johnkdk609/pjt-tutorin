@@ -4,23 +4,24 @@
 <!-- name space는 UserRepo의 fully qualified name으로 설정한다. -->
 <mapper namespace="com.pjt.tutorin.model.dao.UserDao">
 	<!-- 전체 사람 조회 -->
-	<select id="selectAll" resultType="User">
-		SELECT *
-		FROM user;
+	<select id="selectAll"  resultType="User" >
+		SELECT id, password, email, name, nickname, phone_num AS phoneNum, date_format(create_time, '%Y-%M-%d') AS regDate, status 
+		FROM user
 	</select>
 	
 	<!-- 사용자 상세 조회 -->
-	<select id="selectOne" parameterType="String" resultType="User">
-		SELECT *
+	<select id="selectOne"  resultType="User" parameterType="String">
+		SELECT id, password, email, name, nickname, phone_num AS phoneNum, date_format(create_time, '%Y-%M-%d') AS regDate, status 
 		FROM user
 		WHERE id = #{id};
 	</select>
 	
-	<!-- 사용자 등록 -->
-	<insert id="insertUser" parameterType="User">
-		INSERT INTO user (id, password, email, name, nickname, phoneNum)
-		VALUES (#{id}, #{password}, #{email}, #{name}, #{nickname}, #{phoneNum})
-	</insert>
+	<!-- 사용자 등록 -->	
+	<!-- <insert id="insertUser" parameterType="User" keyProperty="id" useGeneratedKeys="true">
+	이상한 특성 2개: id 기본값이 0인데 입력받은 id로 적용되게 바꿔줌.
+		INSERT INTO user (id, password, email, name, nickname, phone_num)
+		VALUES (#{id}, #{password}, #{email} , #{name}, #{nickname}, #{phoneNum});
+	</insert> -->
 	
 	<!-- 사용자 삭제 -->
 	<delete id="deleteUser" parameterType="String">
@@ -28,11 +29,12 @@
 		WHERE id = #{id}
 	</delete>
 	
+	
 	<!-- 사용자 정보 수정 -->
 	<update id="updateUser" parameterType="User">
 		UPDATE user
-		SET email = #{email}, name = #{name}, nickname = #{nickname}, phoneNum = #{phoneNum}
-		WHERE id = #{id} 
+		SET password = #{password}, email = #{email}, name = #{name}, nickname = #{nickname} , phone_num = #{phoneNum}
+		WHERE id = #{id};
 	</update>
 	
 	<!-- 사용자 검색 -->
@@ -51,9 +53,11 @@
 		</if>
 	</select>
 	
-	<insert id="regist" parameterType="user">
-		INSERT INTO user (id, password, email, name, nickname, phoneNum)
-		VALUES (#{id}, #{password}, #{email}, #{name}, #{nickname}, #{phoneNum})
+	
+	<insert id="regist" parameterType="User" keyProperty="id" useGeneratedKeys="true">
+	<!-- 이상한 특성 2개: id 기본값이 0인데 입력받은 id로 적용되게 바꿔줌. -->
+		INSERT INTO user (id, password, email, name, nickname, phone_num)
+		VALUES (#{id}, #{password}, #{email} , #{name}, #{nickname}, #{phoneNum});
 	</insert>
 	
 	

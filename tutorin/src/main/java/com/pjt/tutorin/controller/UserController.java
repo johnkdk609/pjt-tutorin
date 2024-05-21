@@ -58,8 +58,8 @@ public class UserController {
 	/*
 	 * 사용자 상세 조회 (GET /user/{id})
 	 */
-	@Operation(summary = "사용자 등록", description = "사용자를 등록합니다.")
-	@PostMapping("/{id}")
+	@Operation(summary = "사용자 상세 조회", description = "사용자를 상세 조회합니다.")
+	@GetMapping("/{id}")
 	public ResponseEntity<?> detail(@PathVariable String id) {
 		User user = userService.readUser(id);
 		return new ResponseEntity<>(user, user == null ? HttpStatus.NOT_FOUND : HttpStatus.OK);
@@ -69,13 +69,13 @@ public class UserController {
 	/*
 	 * 사용자 등록
 	 */
-	@Operation(summary = "사용자 등록", description = "사용자를 등록합니다.")
-	@PostMapping("")
-	public ResponseEntity<?> create(User user) {
-		int result = userService.writeUser(user);
-		return new ResponseEntity<>(result, result == 1 ? HttpStatus.OK : HttpStatus.BAD_REQUEST);		
-	}
-	
+//	@Operation(summary = "사용자 등록", description = "사용자를 등록합니다.")
+//	@PostMapping("")
+//	public ResponseEntity<?> create(User user) {
+//		int result = userService.writeUser(user);
+//		return new ResponseEntity<>(result, result == 1 ? HttpStatus.OK : HttpStatus.BAD_REQUEST);		
+//	}
+//	
 	
 	/*
 	 * 사용자 정보 수정 (PUT /user/{id})

@@ -48,7 +48,7 @@ const review = () => {
 // 새 창 열기
 const open = function (id) {
   const URL = "http://localhost:5173/out/counsel/as/e/" + id;
-  window.open(URL, "_blank", "width=1000, height=700");
+  window.open(URL, "_blank", "width=700, height=700");
 };
 
 //모달 부분
@@ -98,5 +98,15 @@ const closeModalOutside = (event) => {
 .modal_body {
   background-color: white;
   padding: 20px;
+}
+
+button {
+  cursor: pointer;
+  margin: 10px;
+}
+
+button:hover {
+  background-color: rgb(173, 173, 173); /* 마우스를 올렸을 때의 배경색 */
+  color: rgb(146, 146, 146);
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      class="button" @click="open(counsel.id)" v-for="counsel in completedCounselList" :key="counsel.id">
+      class="button" @click="open(counsel.id)" v-for="counsel in proceedCounselList" :key="counsel.id">
       <div class="mentor">
         <img class="rounded-image" src="@/assets/main.jpg" alt="프로필 사진" />
         <h5>멘토 {{ counsel.mentorId }}</h5>
@@ -23,19 +23,19 @@
 <script setup>
 import { useCounselStore } from "@/stores/counsel";
 import { onMounted, computed } from "vue";
+const store = useCounselStore();
 
 const open = function (id) {
   const URL = "http://localhost:5173/out/counsel/proceed/e/" + id;
-  window.open(URL, "_blank", "width=1000, height=700");
+  window.open(URL, "_blank", "width=700, height=700");
 };
 
-const store = useCounselStore();
 
 onMounted(() => {
   store.getCounselList();
 });
 
-const completedCounselList = computed(() => {
+const proceedCounselList = computed(() => {
   return store.counselList.filter((counsel) => counsel.status === 2);
 });
 </script>

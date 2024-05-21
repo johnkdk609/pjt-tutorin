@@ -7,7 +7,7 @@ const REST_API = `http://localhost:8080/counsel`;
 export const useCounselStore = defineStore("counsel", () => {
   const counselList = ref([]);
   const counsel = ref({});
-  const counselStatus = ref(['대기중', '답변중', '질문가능', '답변필요', '완료', '거절됨']);
+  const counselStatus = ref(['대기중', '답변중', '질문가능', '답변필요', '완료', '거절됨', '취소됨']);
 
 
   const postCounsel = async (router) => {
@@ -44,8 +44,8 @@ export const useCounselStore = defineStore("counsel", () => {
       })
   }
 
-  const rejectCounsel = function () {
-    axios.put(REST_API + '/reject', counsel.value)
+  const updateStatusCounsel = function () {
+    axios.put(REST_API + '/updateStatus', counsel.value)
       .then(() => {
       })
   }
@@ -79,10 +79,10 @@ export const useCounselStore = defineStore("counsel", () => {
       return "orange";
     } else if (status === 3) {
       return "yellowGreen";
-    } else if (status === 5 || status === 6) {
+    } else if (status === 5 || status === 6 || status === 7) {
       return "gray";
     }
   };
 
-  return { counselList, getCounselList, counsel, getCounsel, acceptCounsel, rejectCounsel, answerCounsel, feedbackQCounsel, feedbackACounsel, reviewCounsel, counselStatus, getStatusClass, postCounsel };
+  return { counselList, getCounselList, counsel, getCounsel, acceptCounsel, updateStatusCounsel, answerCounsel, feedbackQCounsel, feedbackACounsel, reviewCounsel, counselStatus, getStatusClass, postCounsel };
 });

@@ -77,8 +77,8 @@ public class CounselServiceImpl implements CounselService {
 	}
 
 	@Override
-	public boolean updateReject(Counsel counsel) {
-		return counselDao.rejectCounsel(counsel) == 1;
+	public boolean updateStatus(Counsel counsel) {
+		return counselDao.updateStatusCounsel(counsel) == 1;
 	}
 
 }
