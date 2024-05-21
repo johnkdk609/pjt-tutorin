@@ -12,7 +12,7 @@ const logout = ()=>{
     <button v-else @click="logout">Logout</button>
     | 
     
-    <RouterLink to="/private">Private</RouterLink>
+    <RouterLink to="/my">MyPage</RouterLink>
 
 
   <RouterView />

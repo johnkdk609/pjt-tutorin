@@ -240,7 +240,7 @@ const router = createRouter({
 router.beforeEach((to, from) => {
   const loginStore = useLoginStore();
 
-  if( to.name === "private"&& loginStore.accessToken === ''){
+  if( to.name === ""&& loginStore.accessToken === ''){
     return {name: "login"}
   }
   // 탐색을 취소하려면 명시적으로 false를 반환해야 함.
