@@ -13,6 +13,9 @@
               <RouterLink :to="{ name: 'mentee_profile' }" class="right">마이프로필</RouterLink> |
               <RouterLink :to="{ name: 'mentor_profile' }" class="right">마이프로필멘토</RouterLink> |
             </div>
+            <div>
+              <RouterLink :to="{ name: 'chatgpt' }">ChatGPT</RouterLink>
+            </div>
           <button @click="tokentest">tokencheck</button>
         </div>
       </nav>
