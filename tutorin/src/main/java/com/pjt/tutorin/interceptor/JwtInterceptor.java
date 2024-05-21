@@ -9,6 +9,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import com.pjt.tutorin.annotation.AuthRequired;
 import com.pjt.tutorin.util.JwtUtil;
 
+import io.swagger.v3.oas.models.PathItem.HttpMethod;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -28,6 +29,11 @@ public class JwtInterceptor implements HandlerInterceptor {
 		
 		// 요청이 로그인으로 왔다면 (토큰 없이 오는 곳) 허용해줘야 함 
 		// 요청이 POST 이면서 /user/login으로 요청이 왔다면 그것은 그냥 허용해줘야 함... 
+		System.out.println(request.getMethod());
+		if (request.getMethod().equals("OPTIONS")) {
+			return true;
+		}
+		
 		
 		if (!(handler instanceof HandlerMethod)) {
 			return true;

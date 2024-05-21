@@ -30,5 +30,5 @@ public interface UserDao {
 
 	// 로그인
 	public User loginUser(User user);
-	
+
 }
