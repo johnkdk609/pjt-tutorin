@@ -1,7 +1,7 @@
 <template>
-  <div class="left">
+  <div>
     <header>
-        <h1>Tutorin</h1>
+      <span class="header-text">Tutorin</span>
     </header>
   </div>
 </template>
@@ -10,11 +10,17 @@
 
 <style scoped>
 header {
-  background-color: aliceblue;
+  /* background-color: aliceblue; */
   height: 100px;
+  position: relative; /* 부모 요소를 기준으로 내부 요소를 위치시키기 위해 */
 }
 
-.left {
+.header-text {
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 0;
+  font-size: 50px; /* 텍스트 크기를 크게 설정 */
+  font-weight: bold; /* 텍스트를 굵게 설정 */
   text-align: left;
 }
 </style>

@@ -41,22 +41,22 @@ UPDATE user
 SET password = '1234', email = 'mckim@gmail.com', name = '김민철', nickname = '철' , phone_num = '01088888885'
 WHERE id = 'mckim';
 
-INSERT INTO counsel (mentee_id, mentor_id, title, content, answer_content, status) VALUES
-('mckim', 'johnKDK', 'hello', 'helpme','무릎을 조심하세요', 3),
-('tester', 'johnKDK', 'ㅎㅇ', '다이어트 팁을 알려주세요','유산소를 많이하세요', 3),
-('john', 'jane', 'title1', 'content1', 'answer1', 1),
-('john', 'michael', 'title2', 'content2', 'answer2', 5),
-('john', 'emily', 'title3', 'content3', 'answer3', 1),
-('john', 'daniel', 'title4', 'content4', 'answer4', 1),
-('daniel', 'sarah', 'title5', 'content5', 'answer5', 1),
-('daniel', 'matthew', 'title6', 'content6', 'answer6', 1),
-('daniel', 'jennifer', 'title7', 'content7', 'answer7', 1),
-('daniel', 'david', 'title8', 'content8', 'answer8', 1),
-('jessica', 'christopher', 'title9', 'content9', 'answer9', 2),
-('jessica', 'amanda', 'title10', 'content10', 'answer10', 2),
-('jessica', 'kevin', 'title11', 'content11', 'answer11', 2),
-('jessica', 'elizabeth', 'title12', 'content12', 'answer12', 2),
-('brandon', 'michelle', 'title13', 'content13', 'answer13', 2),
-('brandon', 'justin', 'title14', 'content14', 'answer14', 2),
-('brandon', 'stephanie', 'title15', 'content15', 'answer15', 2),
-('brandon', 'andrew', 'title16', 'content16', 'answer16', 3);
+INSERT INTO counsel (mentee_id, mentor_id, title, content, answer_content, status, create_time) VALUES
+('mckim', 'johnKDK', 'hello', 'helpme', '무릎을 조심하세요', 3, now()),
+('tester', 'johnKDK', 'ㅎㅇ', '다이어트 팁을 알려주세요', '유산소를 많이하세요', 3, DATE_ADD(now(), INTERVAL 1 SECOND)),
+('john', 'jane', 'title1', 'content1', 'answer1', 1, DATE_ADD(now(), INTERVAL 2 SECOND)),
+('john', 'michael', 'title2', 'content2', 'answer2', 5, DATE_ADD(now(), INTERVAL 3 SECOND)),
+('john', 'emily', 'title3', 'content3', 'answer3', 1, DATE_ADD(now(), INTERVAL 4 SECOND)),
+('john', 'daniel', 'title4', 'content4', 'answer4', 1, DATE_ADD(now(), INTERVAL 5 SECOND)),
+('daniel', 'sarah', 'title5', 'content5', 'answer5', 1, DATE_ADD(now(), INTERVAL 6 SECOND)),
+('daniel', 'matthew', 'title6', 'content6', 'answer6', 1, DATE_ADD(now(), INTERVAL 7 SECOND)),
+('daniel', 'jennifer', 'title7', 'content7', 'answer7', 1, DATE_ADD(now(), INTERVAL 8 SECOND)),
+('daniel', 'david', 'title8', 'content8', 'answer8', 1, DATE_ADD(now(), INTERVAL 9 SECOND)),
+('jessica', 'christopher', 'title9', 'content9', 'answer9', 2, DATE_ADD(now(), INTERVAL 10 SECOND)),
+('jessica', 'amanda', 'title10', 'content10', 'answer10', 2, DATE_ADD(now(), INTERVAL 11 SECOND)),
+('jessica', 'kevin', 'title11', 'content11', 'answer11', 2, DATE_ADD(now(), INTERVAL 12 SECOND)),
+('jessica', 'elizabeth', 'title12', 'content12', 'answer12', 2, DATE_ADD(now(), INTERVAL 13 SECOND)),
+('brandon', 'michelle', 'title13', 'content13', 'answer13', 2, DATE_ADD(now(), INTERVAL 14 SECOND)),
+('brandon', 'justin', 'title14', 'content14', 'answer14', 2, DATE_ADD(now(), INTERVAL 15 SECOND)),
+('brandon', 'stephanie', 'title15', 'content15', 'answer15', 2, DATE_ADD(now(), INTERVAL 16 SECOND)),
+('brandon', 'andrew', 'title16', 'content16', 'answer16', 3, DATE_ADD(now(), INTERVAL 17 SECOND));
