@@ -36,6 +36,7 @@ import ViewWithHeader from "@/views/ViewWithHeader.vue";
 import ViewWithoutHeader from "@/views/ViewWithoutHeader.vue";
 import { useLoginStore } from '@/stores/login'
 import PrivateView from "@/views/PrivateView.vue";
+import ChatgptView from "@/views/ChatgptView.vue"
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -69,6 +70,11 @@ const router = createRouter({
           path: "counsel/write",
           name: "writeform",
           component: WriteForm,
+        },
+        {
+          path: '/chatgpt',
+          name: 'chatgpt',
+          component: ChatgptView
         },
 
         {

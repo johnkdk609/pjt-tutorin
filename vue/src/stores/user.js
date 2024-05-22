@@ -17,7 +17,7 @@ export const useUserStore = defineStore("user", () => {
       alert("회원가입이 완료되었습니다. (로그인 창으로 이동)");
       router.push({ name: "login" }); // 성공 시 리디렉션
     } catch (e) {
-      alert('가입에 실패하였습니다.' + e);
+      alert('사용 불가능한 아이디입니다. 다시 입력해주세요.');
     }
   };
 
