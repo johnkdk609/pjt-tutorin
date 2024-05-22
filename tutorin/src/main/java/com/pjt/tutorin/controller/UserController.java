@@ -160,7 +160,16 @@ public class UserController {
 		
 		result.put("accessToken", accessToken);
 		result.put("id", dbUser.getId());
+		result.put("password", dbUser.getPassword());
+		result.put("email", dbUser.getEmail());
+		result.put("name", dbUser.getName());
 		result.put("nickname", dbUser.getNickname());
+		result.put("phoneNum", dbUser.getPhoneNum());
+		result.put("image", dbUser.getImage());
+		result.put("menteeIntro", dbUser.getMenteeIntro());
+		result.put("status", dbUser.getStatus());
+		result.put("createTime", dbUser.getCreateTime());
+		
 		
 		
 		return new ResponseEntity<>(result, HttpStatus.ACCEPTED);

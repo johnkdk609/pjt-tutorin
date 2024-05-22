@@ -1,17 +1,20 @@
 <template>
   <div class="container">
     <nav class="nav">
-      <RouterLink to="/my">홈</RouterLink>
-      <RouterLink to="/my/modify">개인 정보 수정</RouterLink>
-      <RouterLink to="/my/modifyprofile">프로필 수정</RouterLink>
-      <RouterLink to="/my/request/wait">상담 신청 내역</RouterLink>
-      <RouterLink to="/my/response/wait">상담 수령 내역</RouterLink>
-      <RouterLink to="/my/etc">기타</RouterLink>
+      <RouterLink :to="{ name: 'myhome', params: { id: loginStore.loginUser.id } }">홈</RouterLink>
+      <RouterLink :to="{ name: 'modify', params: { id: loginStore.loginUser.id } }">개인 정보 수정</RouterLink>
+      <RouterLink :to="{ name: 'modifyprofile', params: { id: loginStore.loginUser.id } }">프로필 수정</RouterLink>
+      <RouterLink :to="{ name: 'reqwait', params: { id: loginStore.loginUser.id } }">상담 신청 내역</RouterLink>
+      <RouterLink :to="{ name: 'reswait', params: { id: loginStore.loginUser.id } }">상담 수령 내역</RouterLink>
+      <RouterLink :to="{ name: 'etc', params: { id: loginStore.loginUser.id } }">기타</RouterLink>
     </nav>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { useLoginStore } from '@/stores/login';
+const loginStore = useLoginStore();
+</script>
 
 <style scoped>
 .container {

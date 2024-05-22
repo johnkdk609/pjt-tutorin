@@ -14,13 +14,13 @@
       <input type="text" placeholder="비디오(수정예정)" v-model="store.counsel.video" />
     </div>
     <p></p>
-    <div class="button" @click="send">
+    <button  @click="send">
       <h3>결제 및 전송</h3>
-    </div>
+    </button>
     <p></p>
-    <div class="button" onclick="history.back()">
+    <button  onclick="history.back()">
       <h3>뒤로가기</h3>
-    </div>
+    </button>
   </div>
 </template>
 
@@ -42,7 +42,7 @@ const send = () => {
   padding: 20px;
 }
 
-.button {
+button {
   border-radius: 20px; /* 둥근 버튼을 만들기 위해 픽셀 단위를 사용 */
   background-color: yellowgreen;
   color: white;
@@ -55,7 +55,7 @@ const send = () => {
   display: block; /* 중앙 정렬을 위해 block 요소로 변경 */
 }
 
-.button:hover {
+button:hover {
   background-color: darkgreen; /* 마우스를 올렸을 때의 배경색 */
 }
 </style>

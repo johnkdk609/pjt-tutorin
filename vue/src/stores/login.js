@@ -29,7 +29,7 @@ export const useLoginStore = defineStore('login', {
       const res = await axios.post('http://localhost:8080/user/login', userInfo);
       // console.log(res)
       accessToken.value = res.data.accessToken;
-      loginUser.value = { ...userInfo, id: res.data.id, nickname: res.data.nickname };
+      loginUser.value = { ...userInfo, id: res.data.id, password: res.data.password, email: res.data.email, name: res.data.name, nickname: res.data.nickname, phoneNum: res.data.phoneNum, image: res.data.image, menteeIntro: res.data.menteeIntro, status: res.data.status, createTime: res.data.createTime};
       router.push({ name: 'home' });
     } catch (e) {
       alert('로그인 실패. 아이디 패스워드를 확인해주세요.')
