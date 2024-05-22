@@ -13,7 +13,7 @@ public interface MentorDao {
 	public Mentor selectOne(String id);
 	
 	// 멘토 등록 (자격 신청 즉시)
-	public int insertMentor(String id);
+	public int insertMentor(Mentor mentor);
 	
 	// 멘토 정보 수정
 	public int updateMentor(Mentor mentor);

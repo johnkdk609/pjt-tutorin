@@ -25,8 +25,8 @@ public class MentorServiceImpl implements MentorService {
 	}
 
 	@Override
-	public int insertMentor(String id) {
-		return mentorDao.insertMentor(id);
+	public int insertMentor(Mentor mentor) {
+		return mentorDao.insertMentor(mentor);
 	}
 
 	@Override
