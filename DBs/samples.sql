@@ -62,3 +62,16 @@ INSERT INTO counsel (mentee_id, mentor_id, title, content, answer_content, statu
 ('brandon', 'justin', 'title14', 'content14', 'answer14', 2, DATE_ADD(now(), INTERVAL 15 SECOND)),
 ('brandon', 'stephanie', 'title15', 'content15', 'answer15', 2, DATE_ADD(now(), INTERVAL 16 SECOND)),
 ('brandon', 'andrew', 'title16', 'content16', 'answer16', 3, DATE_ADD(now(), INTERVAL 17 SECOND));
+
+-- Insert sample data into mentor table
+INSERT INTO mentor (id, status, mentor_intro, account_num, account_fee, review_num, review_grade) VALUES
+('johnKDK', '1', 'Expert in software development', 1234567890, 1000, 10, 4.8),
+('mckim', '1', 'A+ in SSAFY coding test', 9876543210, 2000, 20, 4.9),
+('michael', '1', 'Specialist in cybersecurity', 1111222233, 1500, 5, 4.7),
+('emily', '1', 'Professional in cloud computing', 2222333344, 1800, 8, 4.8),
+('daniel', '1', 'Consultant in AI and machine learning', 3333444455, 2500, 15, 4.6),
+('sarah', '1', 'Expert in digital marketing', 4444555566, 1200, 12, 4.4),
+('matthew', '1', 'Seasoned project manager', 5555666677, 1700, 7, 4.9),
+('jennifer', '1', 'Experienced UX/UI designer', 6666777788, 1100, 9, 4.3),
+('david', '1', 'Veteran in network administration', 7777888899, 1600, 6, 4.5),
+('jessica', '1', 'Expert in mobile app development', 8888999900, 2100, 11, 4.7);
