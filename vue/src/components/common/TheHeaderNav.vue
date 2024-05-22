@@ -16,14 +16,6 @@
               <RouterLink :to="{ name: 'mentor_profile' }" class="right">마이프로필멘토</RouterLink> |
 
             </div>
-            <div>
-              <RouterLink :to="{ name: 'chatgpt' }">ChatGPT</RouterLink>
-            </div>
-          <button @click="tokentest">tokencheck</button>
-            <div>
-              <span class="logoutBtn" @click="logout">로그아웃</span>    
-            </div> 
-
         </div>
       </nav>
     </header>

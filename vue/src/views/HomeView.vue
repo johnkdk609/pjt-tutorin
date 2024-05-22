@@ -1,11 +1,13 @@
-<script setup></script>
+<script setup>
+import ChatgptView from '@/views/ChatgptView.vue'
+</script>
 
 <template>
   <div>
     <h1>홈입니다.</h1>
   </div>
   <div class="gpt">
-
+    <ChatgptView />
   </div>
 
 
