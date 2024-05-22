@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      class="button" @click="open(counsel.id)" v-for="counsel in completedCounselList" :key="counsel.id">
+      class="button" @click="open(counsel.id)" v-for="counsel in proceedCounselList" :key="counsel.id">
       <div class="mentor">
         <img class="rounded-image" src="@/assets/main.jpg" alt="프로필 사진" />
         <h5>멘토 {{ counsel.mentorId }}</h5>
@@ -28,7 +28,7 @@ const open = function (id) {
   window.open(
     "http://localhost:5173/out/counsel/proceed/r/" + id,
     "_blank",
-    "width=1000, height=700"
+    "width=700, height=700"
   );
 };
 
@@ -38,7 +38,7 @@ onMounted(() => {
   store.getCounselList();
 });
 
-const completedCounselList = computed(() => {
+const proceedCounselList = computed(() => {
   return store.counselList.filter((counsel) => counsel.status === 2);
 });
 </script>

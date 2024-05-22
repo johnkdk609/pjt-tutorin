@@ -1,10 +1,9 @@
 <template>
-  <h1>{{store.counsel.id}}번 상담완료 내용</h1>
   <div class="context">
-    <p>멘티: {{ store.counsel.menteeId }}</p>
-    <p>멘토: {{ store.counsel.mentorId }}</p>
-    <p>제목: {{ store.counsel.title }}</p>
-    <p>질문 내용: {{ store.counsel.content }}</p>
+    <h2>제목 : {{ store.counsel.title }}</h2>
+    <span>멘티 : {{ store.counsel.menteeId }}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span>
+    <span>멘토 : {{ store.counsel.mentorId }}</span>
+    <p>질문 내용 : {{ store.counsel.content }}</p>
     <p>답변 내용: {{ store.counsel.answerContent }}</p>
 
     <div class="modal" ref="modal" @click="closeModalOutside">
@@ -14,9 +13,11 @@
         <button @click="closeModal()">닫기</button>
       </div>
     </div>
+    <p></p>
     <button class="btn-open-modal" @click="openModal">리뷰 보기</button>
-    <br />
+    <p></p>
     <button class="btn-open-modal" @click="open(store.counsel.id)">추가 답변 하기</button>
+    <h5 style="text-align: right; vertical-align: top;">id : {{ store.counsel.id }}</h5>
   </div>
 </template>
 
@@ -34,7 +35,7 @@ onMounted(() => {
 // 새 창 열기
 const open = function (id) {
   const URL = "http://localhost:5173/out/counsel/as/r/" + id;
-  window.open(URL, "_blank", "width=1000, height=700");
+  window.open(URL, "_blank", "width=700, height=700");
 };
 
 
@@ -65,9 +66,7 @@ const closeModalOutside = (event) => {
 .context {
   background-color: white;
   height: 300px;
-  display: flex;
   flex-direction: column;
-  text-align: center;
 }
 
 .modal {
@@ -85,5 +84,15 @@ const closeModalOutside = (event) => {
 .modal_body {
   background-color: white;
   padding: 20px;
+}
+
+button {
+  cursor: pointer;
+  margin: 10px;
+}
+
+button:hover {
+  background-color: rgb(173, 173, 173); /* 마우스를 올렸을 때의 배경색 */
+  color: rgb(146, 146, 146);
 }
 </style>

@@ -7,14 +7,6 @@ const logout = ()=>{
 </script>
 
 <template>
-    <RouterLink to="/">Home</RouterLink> | 
-    <RouterLink v-if="loginStore.accessToken === ''" to="/login">Login</RouterLink>
-    <button v-else @click="logout">Logout</button>
-    | 
-    
-    <RouterLink to="/my">MyPage</RouterLink>
-
-
   <RouterView />
 </template>
 

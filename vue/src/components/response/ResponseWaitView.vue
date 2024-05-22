@@ -28,7 +28,7 @@ const open = function (id) {
   window.open(
     "http://localhost:5173/out/counsel/wait/r/" + id,
     "_blank",
-    "width=1000, height=700"
+    "width=700, height=700"
   );
 };
 

@@ -108,12 +108,12 @@ const router = createRouter({
                   component: RequestWaitView,
                 },
                 {
-                  path: "reqproceed",
+                  path: "proceed",
                   name: "reqproceed",
                   component: RequestProceedView,
                 },
                 {
-                  path: "reqdone",
+                  path: "done",
                   name: "reqdone",
                   component: RequestDoneView,
                 },
@@ -130,12 +130,12 @@ const router = createRouter({
                   component: ResponseWaitView,
                 },
                 {
-                  path: "resproceed",
+                  path: "proceed",
                   name: "resproceed",
                   component: ResponseProceedView,
                 },
                 {
-                  path: "resdone",
+                  path: "done",
                   name: "resdone",
                   component: ResponseDoneView,
                 },
@@ -246,11 +246,15 @@ const router = createRouter({
 router.beforeEach((to, from) => {
   const loginStore = useLoginStore();
 
-  if( to.name === ""&& loginStore.accessToken === ''){
-    return {name: "login"}
+  // 토큰이 없는데 login, home, regist 페이지가 아니면 홈으로 보내기
+  // if (loginStore.accessToken === '' && (to.name !== 'login' && to.name !== 'home' && to.name !== 'regist')) {
+  if (loginStore.accessToken === '' && (to.name === 'myhome')) {  
+    alert('로그인을 먼저 해주세요');
+    return { name: 'home' };
   }
   // 탐색을 취소하려면 명시적으로 false를 반환해야 함.
   return true;
-})
+});
+
 
 export default router;

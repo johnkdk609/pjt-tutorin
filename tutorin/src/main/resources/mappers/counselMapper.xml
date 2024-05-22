@@ -9,6 +9,7 @@
 	<select id="getCounsels"  resultType="Counsel" >
 		SELECT id, mentee_id as menteeId, mentor_id as mentorId, status, title, content, video, answer_content AS answerContent, answer_content AS answerContent, answer_video AS answerVideo, question1, answer1, question2, answer2, question3, answer3, review_star as reviewStar, review_content as reviewContent, create_time AS createTime, accept_time AS acceptTime, answer_time AS answerTime, feedback_time AS feedbackTime 
 		FROM counsel
+		ORDER BY create_time DESC;
 	</select>
 
 	<!-- 상세 조회 -->
@@ -87,9 +88,10 @@
 		WHERE id = #{id};
 	</update>
 	
-	<update id="rejectCounsel" parameterType="Counsel">
+	<!-- 거절: status=6, 취소: status=7 -->
+	<update id="updateStatusCounsel" parameterType="Counsel">
 		UPDATE counsel
-		SET status = 6
+		SET status = #{status}
 		WHERE id = #{id};
 	</update>
 	

@@ -13,7 +13,7 @@ export const useUserStore = defineStore("user", () => {
 
   const postUser = async (router) => {
     try {
-      await axios.post(REST_API, user.value);
+      await axios.post(REST_API+'/regist', user.value);
       alert("회원가입이 완료되었습니다. (로그인 창으로 이동)");
       router.push({ name: "login" }); // 성공 시 리디렉션
     } catch (e) {

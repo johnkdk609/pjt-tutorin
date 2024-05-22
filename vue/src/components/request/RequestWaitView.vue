@@ -26,7 +26,7 @@ import { onMounted, computed } from "vue";
 
 const open = function (id) {
   const URL = "http://localhost:5173/out/counsel/wait/e/" + id;
-  window.open(URL, "_blank", "width=1000, height=700");
+  window.open(URL, "_blank", "width=700, height=700");
 };
 
 const store = useCounselStore();
