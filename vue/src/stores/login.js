@@ -3,8 +3,10 @@ import { defineStore } from 'pinia';
 import axios from 'axios';
 import router from '../router';
 
-export const useLoginStore = defineStore('login', () => {
-  const accessToken = ref('');
+
+export const useLoginStore = defineStore('login', {
+  state: () => {
+    const accessToken = ref('');
   const loginUser = ref({});
 
   // const login2 = (userInfo) => {
@@ -25,10 +27,12 @@ export const useLoginStore = defineStore('login', () => {
       console.log("로그인 시도")
       console.log(userInfo)
       const res = await axios.post('http://localhost:8080/user/login', userInfo);
+      // console.log(res)
       accessToken.value = res.data.accessToken;
-      loginUser.value = { ...userInfo, name: res.data.name };
+      loginUser.value = { ...userInfo, id: res.data.id, nickname: res.data.nickname };
       router.push({ name: 'home' });
     } catch (e) {
+      alert('로그인 실패. 아이디 패스워드를 확인해주세요.')
       console.log('로그인 실패');
       console.log(e);
     }
@@ -40,4 +44,6 @@ export const useLoginStore = defineStore('login', () => {
   };
 
   return { accessToken, loginUser, login, logout };
-});
+  },
+  persist: true,
+})

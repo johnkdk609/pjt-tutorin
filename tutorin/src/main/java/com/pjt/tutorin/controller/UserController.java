@@ -159,7 +159,8 @@ public class UserController {
 		response.addCookie(cookie);
 		
 		result.put("accessToken", accessToken);
-		result.put("name", dbUser.getName());
+		result.put("id", dbUser.getId());
+		result.put("nickname", dbUser.getNickname());
 		
 		
 		return new ResponseEntity<>(result, HttpStatus.ACCEPTED);

@@ -3,6 +3,7 @@
     <header>
       <span class="header-text">Tutorin</span>
     </header>
+    <hr>
   </div>
 </template>
 
@@ -22,5 +23,9 @@ header {
   font-size: 50px; /* 텍스트 크기를 크게 설정 */
   font-weight: bold; /* 텍스트를 굵게 설정 */
   text-align: left;
+}
+
+hr {
+  width: 90%;
 }
 </style>

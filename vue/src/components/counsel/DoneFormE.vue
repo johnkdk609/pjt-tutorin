@@ -17,9 +17,9 @@
         <button @click="closeModal()">닫기</button>
       </div>
     </div>
-    <button class="btn-open-modal" @click="openModal">리뷰 등록</button>
+    <button class="btn-open-modal" @click="openModal" v-if="store.counsel.status !== 6 && store.counsel.status !== 7">리뷰 등록</button>
     <br />
-    <button class="btn-open-modal" @click="open(store.counsel.id)">추가 질문 하기</button>
+    <button class="btn-open-modal" @click="open(store.counsel.id)" v-if="store.counsel.status !== 6 && store.counsel.status !== 7">추가 질문 하기</button>
   </div>
 </template>
 
