@@ -15,6 +15,7 @@ const keyword = ref('');
 
 const search = function () {
     store.chatgptSearch(keyword.value);
+    keyword.value = '';
 }
 
 </script>
