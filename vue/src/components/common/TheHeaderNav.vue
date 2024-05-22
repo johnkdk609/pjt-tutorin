@@ -4,6 +4,7 @@
       <nav class="nav-container">
         <RouterLink to="/" class="left"><span class="header-text">Tutorin</span></RouterLink>
         <div class="right-links">
+          <span v-if="loginStore.loginUser.nickname!==undefinded" style="font-size: 30px">{{ loginStore.loginUser.nickname }}님 환영합니다.&nbsp;&nbsp;</span>
           <button @click="tokentest">tokencheck</button>
             <div v-if="!loginStore.accessToken">
               <RouterLink to="/login" class="right">로그인</RouterLink> |
@@ -25,12 +26,15 @@
 <script setup>
 import { useRouter } from 'vue-router';
 import { useLoginStore } from '@/stores/login';
-const tokentest = function(){
-  console.log('토큰:'+loginStore.accessToken)
-}
-
 const router = useRouter();
 const loginStore = useLoginStore();
+
+const tokentest = function(){
+  console.log('토큰:'+loginStore.accessToken)
+  console.log('아이디:'+loginStore.loginUser.id)
+  console.log('닉네임:'+loginStore.loginUser.nickname)
+}
+
 
 const logout = () => {
   loginStore.logout();
