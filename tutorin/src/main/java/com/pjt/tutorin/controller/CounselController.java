@@ -103,10 +103,10 @@ public class CounselController {
 		return new ResponseEntity<String>(FAIL, HttpStatus.BAD_REQUEST);
 	}
 	
-	@PutMapping("/reject")
+	@PutMapping("/updateStatus")
 	public ResponseEntity<String> updateReject(@RequestBody Counsel counsel) {
 		counselService.updateReview(counsel);
-		if (counselService.updateReject(counsel))
+		if (counselService.updateStatus(counsel))
 			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
 		return new ResponseEntity<String>(FAIL, HttpStatus.BAD_REQUEST);
 	}

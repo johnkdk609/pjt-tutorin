@@ -29,6 +29,6 @@ public interface CounselDao {
 
 	public int reviewCounsel(Counsel counsel);
 
-	public int rejectCounsel(Counsel counsel);
+	public int updateStatusCounsel(Counsel counsel);
 
 }

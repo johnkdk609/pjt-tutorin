@@ -30,5 +30,5 @@ public interface CounselService {
 
 	public boolean updateReview(Counsel counsel);
 
-	public boolean updateReject(Counsel counsel);
+	public boolean updateStatus(Counsel counsel);
 }
