@@ -55,8 +55,8 @@ public class MentorController {
 	 */
 	@Operation(summary = "멘토 등록", description = "멘토를 등록합니다.")
 	@PostMapping("")
-	public ResponseEntity<?> create(String id) {
-		int result = mentorService.insertMentor(id);
+	public ResponseEntity<?> create(Mentor mentor) {
+		int result = mentorService.insertMentor(mentor);
 		return new ResponseEntity<>(result, result == 1 ? HttpStatus.OK : HttpStatus.BAD_REQUEST);		
 	}	
 	

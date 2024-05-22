@@ -13,7 +13,7 @@ public interface MentorService {
 	public Mentor readMentor(String id);
 	
 	// mentor 등록 (멘토 자격 신청)
-	public int insertMentor(String id);
+	public int insertMentor(Mentor mentor);
 	
 	// mentor 회원정보 수정
 	public int modifyMentor(Mentor mentor);
