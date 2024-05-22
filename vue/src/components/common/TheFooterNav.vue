@@ -10,6 +10,13 @@
 <script setup></script>
 
 <style scoped>
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
 .footer {
   bottom: 0;
   left: 0;
@@ -18,6 +25,6 @@
   align-items: center;
   justify-content: center;
   background-color: rgba(57, 64, 75, 0.5);
-  height: 50px;
+  height: 70px;
 }
 </style>
