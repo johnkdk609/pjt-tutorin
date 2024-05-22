@@ -1,7 +1,9 @@
 <template>
-    <div>
-        <h2>ChatGPTView</h2>
-        <div>
+    <div class="chatgpt-view">
+        <div class="header">
+            <h2>ChatGPT에 무엇이든 물어보세요.</h2>
+        </div>
+        <div class="content">
             <ChatgptSearch />
             <hr>
             <ChatgptDetail />

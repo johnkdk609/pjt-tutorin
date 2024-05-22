@@ -3,13 +3,6 @@ import ChatgptView from '@/views/ChatgptView.vue'
 </script>
 
 <template>
-  <div>
-    <h1>홈입니다.</h1>
-  </div>
-  <div class="gpt">
-    <ChatgptView />
-  </div>
-
 
   <div class="videos">
     <iframe width="420" height="250" src="https://www.youtube.com/embed/H-AcDBLqxi4?si=ZcXWHGL2U1kR02ot" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -20,11 +13,36 @@ import ChatgptView from '@/views/ChatgptView.vue'
     <p></p>
     <iframe width="420" height="250" src="https://www.youtube.com/embed/h_9ZZvH4s6c?si=0PgosJAOf6B50BCv" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
   </div>
+
+  <div class="container">
+    <div class="gpt fixed-top">
+      <ChatgptView />
+    </div>
+  </div>
 </template>
 
 <style scoped>
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px; /* Full viewport height to center vertically */
+}
+
+.fixed-top {
+  position: fixed;
+  top: 450px;
+  width: 100%;
+  z-index: 999;
+}
+
+.gpt {
+  text-align: center;
+}
+
 .videos{
   display: flex;
+  margin-top: 30px;
   iframe{
     margin: 10px;
   }

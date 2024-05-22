@@ -1,6 +1,6 @@
 <template>
     <div>
-        <input type="text" v-model="keyword" placeholder="ChatGPT에 무엇이든 물어보세요." />
+        <input type="text" class="search-input" v-model="keyword" placeholder=" 한국어, 300자 이내로 답변해드립니다." />
         <button @click="search">검색</button>
     </div>
 </template>
@@ -21,5 +21,8 @@ const search = function () {
 </script>
 
 <style scoped>
-
+.search-input {
+  width: 400px; /* This will make it take the full width of its container */
+  max-width: 600px;
+}
 </style>

@@ -1,6 +1,5 @@
 <template>
     <div v-if="store.messages.length > 0">
-      <h4>ChatGPT Prompts and Responses</h4>
       <ul>
         <li v-for="message in store.messages" :key="message.id">
           {{ message.text }}
