@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- name space는 UserRepo의 fully qualified name으로 설정한다. -->
+<mapper namespace="com.pjt.tutorin.model.dao.MentorDao">
+	<!-- 전체 멘토 조회 -->
+	<select id="selectAll" resultType="Mentor" >
+		SELECT id, status, mentor_intro AS mentorIntro, account_num AS accountNum, account_fee AS accountFee, review_num AS reviewNum, review_grade AS reviewGrade
+		FROM mentor
+	</select>
+	
+	<!-- 멘토 상세 조회 -->
+	<select id="selectOne" resultType="Mentor" parameterType="String">
+		SELECT id, status, mentor_intro AS mentorIntro, account_num AS accountNum, account_fee AS accountFee, review_num AS reviewNum, review_grade AS reviewGrade
+		FROM mentor
+		WHERE id = #{id}
+	</select>
+	
+	<!-- 멘토 등록 -->
+	<insert id="insertMentor" parameterType="Mentor" keyProperty="id" useGeneratedKeys="true">
+		INSERT INTO mentor (id, status, mentor_intro, account_num, account_fee, review_num, review_grade)
+		VALUES (#{id), #{status}, #{mentorIntro}, #{accountNum}, #{accountFee}, #{reviewNum}, #{reviewGrade});
+	</insert>
+	
+	<!-- 멘토 정보 수정 -->
+	<update id="updateMentor" parameterType="Mentor">
+		UPDATE mentor
+		SET status = #{status}, mentor_intro = #{mentorIntro}, account_num = #{accountNum}, account_fee = #{accountFee}, review_num = #{reviewNum}, review_grade = #{reviewGrade}
+		WHERE id = #{id}
+	</update>
+
+	<!-- 멘토 정보 삭제 -->
+	<delete id="deleteMentor" parameterType="String">
+		DELETE FROM mentor
+		WHERE id = #{id}
+	</delete>
+	
+</mapper>
