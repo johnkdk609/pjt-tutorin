@@ -19,7 +19,7 @@
 	<!-- 멘토 등록 -->
 	<insert id="insertMentor" parameterType="Mentor" keyProperty="id" useGeneratedKeys="true">
 		INSERT INTO mentor (id, status, mentor_intro, account_num, account_fee, review_num, review_grade)
-		VALUES (#{id), #{status}, #{mentorIntro}, #{accountNum}, #{accountFee}, #{reviewNum}, #{reviewGrade});
+		VALUES (#{id}, #{status}, #{mentorIntro}, #{accountNum}, #{accountFee}, #{reviewNum}, #{reviewGrade})
 	</insert>
 	
 	<!-- 멘토 정보 수정 -->
