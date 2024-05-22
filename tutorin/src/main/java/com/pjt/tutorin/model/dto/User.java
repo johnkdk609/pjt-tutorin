@@ -10,6 +10,7 @@ public class User {
 	private String phoneNum;
 	private String image;
 	private String menteeIntro;
+	private int status;
 	private String createTime;
 	private String updateTime;
 	private String accessToken;		// JWT 토큰
@@ -23,6 +24,14 @@ public class User {
 		this.name = name;
 		this.nickname = nickname;
 		this.phoneNum = phoneNum;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
 	}
 
 	public String getId() {
@@ -117,7 +126,8 @@ public class User {
 	public String toString() {
 		return "User [id=" + id + ", password=" + password + ", email=" + email + ", name=" + name + ", nickname="
 				+ nickname + ", phoneNum=" + phoneNum + ", image=" + image + ", menteeIntro=" + menteeIntro
-				+ ", createTime=" + createTime + ", updateTime=" + updateTime + ", accessToken=" + accessToken + "]";
+				+ ", status=" + status + ", createTime=" + createTime + ", updateTime=" + updateTime + ", accessToken="
+				+ accessToken + "]";
 	}
 	
 }

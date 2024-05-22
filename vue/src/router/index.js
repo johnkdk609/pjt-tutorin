@@ -78,7 +78,7 @@ const router = createRouter({
         },
 
         {
-          path: "my",
+          path: "my/:id",
           name: "mypage",
           component: MyView,
           children: [
@@ -154,12 +154,12 @@ const router = createRouter({
           component: RegistView,
         },
         {
-          path: "profile/mentee",
+          path: "profile/mentee/:id",
           name: "mentee_profile",
           component: MenteeProfileView,
         },
         {
-          path: "profile/mentor",
+          path: "profile/mentor/:id",
           name: "mentor_profile",
           component: MentorProfileView,
         },

@@ -5,13 +5,13 @@
 <mapper namespace="com.pjt.tutorin.model.dao.UserDao">
 	<!-- 전체 사람 조회 -->
 	<select id="selectAll"  resultType="User" >
-		SELECT id, password, email, name, nickname, phone_num AS phoneNum, date_format(create_time, '%Y-%M-%d') AS regDate, status 
+		SELECT id, password, email, name, nickname, phone_num AS phoneNum, image, mentee_intro AS menteeIntro, status, date_format(create_time, '%Y-%M-%d') AS createTime
 		FROM user
 	</select>
 	
 	<!-- 사용자 상세 조회 -->
 	<select id="selectOne"  resultType="User" parameterType="String">
-		SELECT id, password, email, name, nickname, phone_num AS phoneNum, date_format(create_time, '%Y-%M-%d') AS regDate, status 
+		SELECT id, password, email, name, nickname, phone_num AS phoneNum, date_format(create_time, '%Y-%M-%d') AS createTime, status 
 		FROM user
 		WHERE id = #{id};
 	</select>
@@ -33,7 +33,7 @@
 	<!-- 사용자 정보 수정 -->
 	<update id="updateUser" parameterType="User">
 		UPDATE user
-		SET password = #{password}, email = #{email}, name = #{name}, nickname = #{nickname} , phone_num = #{phoneNum}
+		SET password = #{password}, email = #{email}, name = #{name}, nickname = #{nickname} , phone_num = #{phoneNum}, status = #{status}
 		WHERE id = #{id};
 	</update>
 	
@@ -62,7 +62,8 @@
 	
 	
 	<select id="loginUser" parameterType="User" resultType="User">
-		SELECT * FROM user
+		SELECT id, password, email, name, nickname, phone_num AS phoneNum, image, mentee_intro AS menteeIntro, status, date_format(create_time, '%Y-%M-%d') AS createTime
+		FROM user
 		WHERE id=#{id} AND password = #{password}
 	</select>
 	

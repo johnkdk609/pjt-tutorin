@@ -2,9 +2,9 @@
   <div>
     <h1>mentor프로필</h1>
     <div class="content">내용</div>
-    <div class="button" onclick="location.href='http://localhost:5173/counsel/write';">
+    <button onclick="location.href='http://localhost:5173/counsel/write';">
       <h3>상담 신청하기</h3>
-    </div>
+    </button>
   </div>
 </template>
 
@@ -17,7 +17,7 @@
   height: 500px;
 }
 
-.button {
+button {
   border-radius: 20px; /* 둥근 버튼을 만들기 위해 픽셀 단위를 사용 */
   background-color: yellowgreen;
   color: white;
@@ -30,7 +30,7 @@
   display: block; /* 중앙 정렬을 위해 block 요소로 변경 */
 }
 
-.button:hover {
+button:hover {
   background-color: darkgreen; /* 마우스를 올렸을 때의 배경색 */
 }
 </style>

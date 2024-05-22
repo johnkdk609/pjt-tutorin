@@ -4,18 +4,19 @@
       <nav class="nav-container">
         <RouterLink to="/" class="left"><span class="header-text">Tutorin</span></RouterLink>
         <div class="right-links">
-          <span v-if="loginStore.loginUser.nickname!==undefinded" style="font-size: 30px">{{ loginStore.loginUser.nickname }}님 환영합니다.&nbsp;&nbsp;</span>
+          <img v-if="loginStore.loginUser.nickname!==undefinded" src="@/assets/main.jpg" alt="">
+          <span v-if="loginStore.loginUser.nickname!==undefinded" style="font-size: 20px">&nbsp;&nbsp;{{ loginStore.loginUser.nickname }}님 환영합니다.&nbsp;&nbsp;</span>
           <button @click="tokentest">tokencheck</button>
             <div v-if="!loginStore.accessToken">
               <RouterLink to="/login" class="right">로그인</RouterLink> |
               <RouterLink :to="{ name: 'regist' }" class="right">회원가입</RouterLink>
             </div>
             <div v-if="loginStore.accessToken">
-              <RouterLink to="/my" class="right">마이페이지</RouterLink> |
-              <RouterLink :to="{ name: 'mentee_profile' }" class="right">마이프로필</RouterLink> |
-              <RouterLink :to="{ name: 'mentor_profile' }" class="right">마이프로필멘토</RouterLink> |
-
-            </div>
+              <RouterLink :to="{ name: 'myhome', params: { id: loginStore.loginUser.id } }" class="right">마이페이지</RouterLink> |
+              <RouterLink :to="{ name: 'mentee_profile', params: { id: loginStore.loginUser.id }  }" class="right">마이프로필</RouterLink> |
+              <RouterLink :to="{ name: 'mentor_profile', params: { id: loginStore.loginUser.id }  }" class="right">마이프로필(멘토)</RouterLink> |
+              <span class="logoutBtn" @click="logout">로그아웃</span>    
+            </div> 
         </div>
       </nav>
     </header>
@@ -33,6 +34,11 @@ const tokentest = function(){
   console.log('토큰:'+loginStore.accessToken)
   console.log('아이디:'+loginStore.loginUser.id)
   console.log('닉네임:'+loginStore.loginUser.nickname)
+  console.log('폰번:'+loginStore.loginUser.phoneNum)
+  console.log('가입일:'+loginStore.loginUser.createTime)
+  console.log('비번:'+loginStore.loginUser.password)
+  console.log('상태:'+loginStore.loginUser.status)
+  console.log(loginStore.loginUser)
 }
 
 
@@ -44,6 +50,12 @@ const logout = () => {
 
 
 <style scoped>
+img
+{
+  border-radius: 50%;
+  width: 40px;
+}
+
 .logoutBtn{
   font-size: 20px;
   font-weight: bold;
