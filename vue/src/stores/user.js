@@ -38,5 +38,15 @@ export const useUserStore = defineStore("user", () => {
       });
   };
 
-  return {user, userList, postUser, updateUser, getUser};
+  const deleteUser = function (id) {
+    axios
+      .delete(REST_API + "/" + id)
+      .then(() => {
+        alert("회원 탈퇴가 완료되었습니다");
+      })
+      .catch((e) => {
+        alert("회원 탈퇴에 실패하였습니다." + e);
+      });
+  };
+  return {user, userList, postUser, updateUser, getUser, deleteUser};
 });

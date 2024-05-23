@@ -111,6 +111,22 @@ public class CounselController {
 		return new ResponseEntity<String>(FAIL, HttpStatus.BAD_REQUEST);
 	}
 	
+	@PutMapping("/secession/{id}")
+	public ResponseEntity<String> secession(@PathVariable("id") String id) {
+		counselService.secession(id);
+		if (counselService.secession(id))
+			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+		return new ResponseEntity<String>(FAIL, HttpStatus.BAD_REQUEST);
+	}
+	
+	@PutMapping("/secession2/{id}")
+	public ResponseEntity<String> secession2(@PathVariable("id") String id) {
+		counselService.secession2(id);
+		if (counselService.secession2(id))
+			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+		return new ResponseEntity<String>(FAIL, HttpStatus.BAD_REQUEST);
+	}
+	
 
 	// 게시글 삭제
 	@DeleteMapping("/{id}")

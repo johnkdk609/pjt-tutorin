@@ -2,12 +2,20 @@
     <div>
       <h1>프로필 수정</h1>
       <div class="content">
-          <h3>hi</h3>
+        <div>
+          <h3>멘티 프로필</h3>
+          <textarea name="" id=""></textarea>
+        </div>
+        <div v-if="status=2">
+          <h3>멘토 프로필</h3>
+          <textarea name="" id=""></textarea>
+        </div>
       </div>
     </div>
   </template>
   
-  <script setup></script>
+<script setup>
+</script>
   
   <style scoped>
   .content{

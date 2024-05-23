@@ -31,4 +31,8 @@ public interface CounselDao {
 
 	public int updateStatusCounsel(Counsel counsel);
 
+	public int secession(String id);
+	
+	public int secession2(String id);
+
 }
