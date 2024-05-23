@@ -95,19 +95,6 @@
 		WHERE id = #{id};
 	</update>
 	
-	<!-- 탈퇴(기존 유저 탈퇴 회원으로 전환) -->
-	<update id="secession" parameterType="String">
-		UPDATE counsel
-		SET mentee_id = '탈퇴회원'
-		WHERE mentee_id = #{id};
-	</update>
-	
-	<update id="secession2" parameterType="String">
-		UPDATE counsel
-		SET mentor_id = '탈퇴회원'
-		WHERE mentor_id = #{id};
-	</update>
-	
 	
 
 	<!--삭제 -->

@@ -29,8 +29,8 @@
             >
           </div>
 
-          <!-- <button @click="tokentest">tokencheck</button> -->
-
+          <button @click="tokentest">tokencheck</button>
+          
           <div v-if="!loginStore.accessToken">
             <RouterLink to="/login" class="right">로그인</RouterLink> |
             <RouterLink :to="{ name: 'regist' }" class="right">회원가입</RouterLink>

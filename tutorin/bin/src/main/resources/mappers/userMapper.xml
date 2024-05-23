@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- name space는 UserRepo의 fully qualified name으로 설정한다. -->
+<mapper namespace="com.pjt.tutorin.model.dao.UserDao">
+	<!-- 전체 사람 조회 -->
+	<select id="selectAll"  resultType="User" >
+		SELECT id, password, email, name, nickname, phone_num AS phoneNum, image, mentee_intro AS menteeIntro, status, date_format(create_time, '%Y-%M-%d') AS createTime
+		FROM user
+	</select>
+	
+	<!-- 사용자 상세 조회 -->
+	<select id="selectOne"  resultType="User" parameterType="String">
+		SELECT id, password, email, name, nickname, phone_num AS phoneNum, date_format(create_time, '%Y-%M-%d') AS createTime, status 
+		FROM user
+		WHERE id = #{id};
+	</select>
+	
+	<!-- 사용자 등록 -->	
+	<!-- <insert id="insertUser" parameterType="User" keyProperty="id" useGeneratedKeys="true">
+	이상한 특성 2개: id 기본값이 0인데 입력받은 id로 적용되게 바꿔줌.
+		INSERT INTO user (id, password, email, name, nickname, phone_num)
+		VALUES (#{id}, #{password}, #{email} , #{name}, #{nickname}, #{phoneNum});
+	</insert> -->
+	
+	<!-- 사용자 삭제 -->
+	<delete id="deleteUser" parameterType="String">
+		DELETE FROM user
+		WHERE id = #{id}
+	</delete>
+	
+	
+	<!-- 사용자 정보 수정 -->
+	<update id="updateUser" parameterType="User">
+		UPDATE user
+		SET password = #{password}, email = #{email}, name = #{name}, nickname = #{nickname} , phone_num = #{phoneNum}, status = #{status}
+		WHERE id = #{id};
+	</update>
+	
+	<!-- 사용자 검색 -->
+	<select id="searchUser" parameterType="SearchCondition" resultType="User">
+		SELECT *
+		FROM user
+		WHERE
+			<trim prefixOverrides="AND">
+				 <if test="key != null">
+					AND ${key} LIKE concat('%', #{word}, '%')
+				</if> 
+				
+			</trim>
+		<if test="orderBy != null">
+			ORDER BY ${orderBy} ${orderByDir}
+		</if>
+	</select>
+	
+	
+	<insert id="regist" parameterType="User" keyProperty="id" useGeneratedKeys="true">
+	<!-- 이상한 특성 2개: id 기본값이 0인데 입력받은 id로 적용되게 바꿔줌. -->
+		INSERT INTO user (id, password, email, name, nickname, phone_num)
+		VALUES (#{id}, #{password}, #{email} , #{name}, #{nickname}, #{phoneNum});
+	</insert>
+	
+	
+	<select id="loginUser" parameterType="User" resultType="User">
+		SELECT id, password, email, name, nickname, phone_num AS phoneNum, image, mentee_intro AS menteeIntro, status, date_format(create_time, '%Y-%M-%d') AS createTime
+		FROM user
+		WHERE id=#{id} AND password = #{password}
+	</select>
+	
+</mapper>

@@ -81,4 +81,14 @@ public class CounselServiceImpl implements CounselService {
 		return counselDao.updateStatusCounsel(counsel) == 1;
 	}
 
+	@Override
+	public boolean secession(String id) {
+		return counselDao.secession(id) == 1;
+	}
+	
+	@Override
+	public boolean secession2(String id) {
+		return counselDao.secession2(id) == 1;
+	}
+
 }

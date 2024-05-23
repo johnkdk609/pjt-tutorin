@@ -31,4 +31,8 @@ public interface CounselService {
 	public boolean updateReview(Counsel counsel);
 
 	public boolean updateStatus(Counsel counsel);
+
+	public boolean secession(String id);
+	
+	public boolean secession2(String id);
 }
