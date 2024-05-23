@@ -50,7 +50,7 @@ INSERT INTO counsel (mentee_id, mentor_id, title, content, answer_content, statu
 ('john', 'emily', 'title3', 'content3', 'answer3', 2, DATE_ADD(now(), INTERVAL 4 SECOND)),
 ('john', 'daniel', 'title4', 'content4', 'answer4', 3, DATE_ADD(now(), INTERVAL 5 SECOND)),
 ('john', 'johnKDK', '거절될 상담', '100만원을 주십쇼', '', 6, DATE_ADD(now(), INTERVAL 6 SECOND)),
-('john', 'john', '자문자답', 'Q/A를 보여주기 위한 질문', '', 3, DATE_ADD(now(), INTERVAL 6 SECOND)),
+('john', 'john', 'self counsel', 'Q/A를 보여주기 위한 예시', '', 3, DATE_ADD(now(), INTERVAL 20 SECOND)),
 ('daniel', 'john', 'title5', 'content5', 'answer5', 1, DATE_ADD(now(), INTERVAL 6 SECOND)),
 ('matthew', 'john', 'title6', 'content6', 'answer6', 1, DATE_ADD(now(), INTERVAL 7 SECOND)),
 ('jennifer', 'john', 'title7', 'content7', 'answer7', 1, DATE_ADD(now(), INTERVAL 8 SECOND)),

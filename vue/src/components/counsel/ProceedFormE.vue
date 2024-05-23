@@ -1,11 +1,32 @@
 <template>
-  <h1>{{ store.counsel.id }}번 답변 작성 중입니다..</h1>
-  <div class="context">
-    <p>멘티: {{ store.counsel.menteeId }}</p>
-    <p>멘토: {{ store.counsel.mentorId }}</p>
-    <p>제목: {{ store.counsel.title }}</p>
-    <p>질문 내용: {{ store.counsel.content }}</p>
+<div class="container mt-4">
+  <div class="card">
+    <div class="card-header">
+      상담 상태 : {{ store.counselStatus[store.counsel.status - 1] }}
+    </div>
+    <div class="card-body">
+      <table class="table table-bordered table-custom">
+        <tr>
+          <td class="bg-gray">제목</td>
+          <td colspan="3">{{ store.counsel.title }}</td>
+        </tr>
+        <tr>
+          <td class="bg-gray">멘티(작성자)</td>
+          <td>{{ store.counsel.menteeId }}</td>
+          <td class="bg-gray">멘토</td>
+          <td>{{ store.counsel.mentorId }}</td>
+        </tr>
+        <tr style="height: 200px;">
+          <td class="bg-gray">질문 내용</td>
+          <td colspan="3">{{ store.counsel.content }}</td>
+        </tr>
+      </table>
+    </div>
   </div>
+  <div class="text-right mt-2" style="color: rgb(212, 212, 212);">
+    counsel id : {{ store.counsel.id }}
+  </div>
+</div>
 </template>
 
 <script setup>
@@ -22,4 +43,20 @@ onMounted(() => {
 </script>
 
 <style scoped>
+.bg-gray {
+  background-color: rgb(206, 206, 206);
+  color: rgb(80, 80, 80);
+  text-align: center;
+}
+
+button {
+  cursor: pointer;
+  margin: 10px;
+  width: 20%;
+}
+
+td {
+  padding: 5px;
+  width: 10%;
+}
 </style>

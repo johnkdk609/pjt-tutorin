@@ -1,26 +1,79 @@
 <template>
-  <h1>{{store.counsel.id}}번 상담완료 내용</h1>
-  <div class="context">
-    <p>멘티: {{ store.counsel.menteeId }}</p>
-    <p>멘토: {{ store.counsel.mentorId }}</p>
-    <p>제목: {{ store.counsel.title }}</p>
-    <p>질문 내용: {{ store.counsel.content }}</p>
-
-    <div class="modal" ref="modal" @click="closeModalOutside">
-      <div class="modal_body" @click.stop>
-
-        <p>별점: {{ store.counsel.reviewStar }}</p>
-        <p>내용: {{ store.counsel.reviewContent }}</p>
-        <input type="int" placeholder="별점" v-model="reviewInputStar"/>
-        <input type="text" placeholder="내용" v-model="reviewInputContent"/>
-        <button @click="review">수정</button>
-        <button @click="closeModal()">닫기</button>
+  <div class="container mt-4">
+    <div class="card">
+      <div class="card-header">
+        상담 상태 : {{ store.counselStatus[store.counsel.status - 1] }}
+      </div>
+      <div class="card-body">
+        <table class="table table-bordered table-custom">
+          <tr>
+            <td class="bg-gray">제목</td>
+            <td colspan="3">{{ store.counsel.title }}</td>
+          </tr>
+          <tr>
+            <td class="bg-gray">멘티(작성자)</td>
+            <td>{{ store.counsel.menteeId }}</td>
+            <td class="bg-gray">멘토</td>
+            <td>{{ store.counsel.mentorId }}</td>
+          </tr>
+          <tr style="height: 200px;">
+            <td class="bg-gray">질문 내용</td>
+            <td colspan="3">{{ store.counsel.content }}</td>
+          </tr>
+          <tr style="height: 200px;">
+            <td class="bg-gray">답변 내용</td>
+            <td colspan="3">{{ store.counsel.answerContent }}</td>
+          </tr>
+        </table>
+        <div class="text-right">
+          <!-- modal -->
+          <div class="modal" ref="modal" @click="closeModalOutside">
+            <div class="modal_body p-3" @click.stop>
+              <table class="table table-bordered">
+                <tr>
+                  <td class="bg-gray">별점</td>
+                  <td v-if="store.counsel.reviewStar>0">{{ store.counsel.reviewStar }}</td>
+                </tr>
+                <tr>
+                  <td class="bg-gray">내용</td>
+                  <td>{{ store.counsel.reviewContent }}</td>
+                </tr>
+                <tr>
+                  <td class="bg-gray">별점 수정</td>
+                  <td>
+                    <select v-model="reviewInputStar" class="form-control">
+                      <option value="1">1점</option>
+                      <option value="2">2점</option>
+                      <option value="3">3점</option>
+                      <option value="4">4점</option>
+                      <option value="5">5점</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="bg-gray">내용 수정</td>
+                  <td><input type="text" placeholder="내용" v-model="reviewInputContent" class="form-control" /></td>
+                </tr>
+              </table>
+              <div class="text-right">
+                <button class="btn btn-primary" @click="review">수정</button>
+                <button class="btn btn-secondary" @click="closeModal()">닫기</button>
+              </div>
+            </div>
+          </div>
+          <button class="btn-open-modal btn btn-warning" @click="openModal"
+            v-if="store.counsel.status !== 6 && store.counsel.status !== 7">리뷰 등록</button>
+          <br />
+          <button class="btn-open-modal btn btn-warning" @click="open(store.counsel.id)"
+            v-if="store.counsel.status !== 6 && store.counsel.status !== 7">추가 질문 하기</button>
+        </div>
       </div>
     </div>
-    <button class="btn-open-modal" @click="openModal" v-if="store.counsel.status !== 6 && store.counsel.status !== 7">리뷰 등록</button>
-    <br />
-    <button class="btn-open-modal" @click="open(store.counsel.id)" v-if="store.counsel.status !== 6 && store.counsel.status !== 7">추가 질문 하기</button>
+    <div class="text-right mt-2" style="color: rgb(212, 212, 212);">
+      counsel id : {{ store.counsel.id }}
+    </div>
   </div>
+
 </template>
 
 <script setup>
@@ -34,7 +87,7 @@ const reviewInputStar = ref();
 const reviewInputContent = ref();
 
 onMounted(() => {
-    store.getCounsel(route.params.id)
+  store.getCounsel(route.params.id)
 })
 
 const review = () => {
@@ -70,19 +123,6 @@ const closeModalOutside = (event) => {
 </script>
 
 <style scoped>
-.btn-open-modal {
-  width: 20%;
-  background-color: rgb(255, 199, 96);
-}
-
-.context {
-  background-color: white;
-  height: 300px;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-}
-
 .modal {
   display: none;
   position: fixed;
@@ -90,7 +130,8 @@ const closeModalOutside = (event) => {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* 반투명한 배경 */
+  background-color: rgba(0, 0, 0, 0.5);
+  /* 반투명한 배경 */
   justify-content: center;
   align-items: center;
 }
@@ -100,13 +141,20 @@ const closeModalOutside = (event) => {
   padding: 20px;
 }
 
+.bg-gray {
+  background-color: rgb(206, 206, 206);
+  color: rgb(80, 80, 80);
+  text-align: center;
+}
+
 button {
   cursor: pointer;
   margin: 10px;
+  width: 30%;
 }
 
-button:hover {
-  background-color: rgb(173, 173, 173); /* 마우스를 올렸을 때의 배경색 */
-  color: rgb(146, 146, 146);
+td {
+  padding: 5px;
+  width: 10%;
 }
 </style>
