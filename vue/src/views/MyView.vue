@@ -29,5 +29,6 @@ import TheMyNav from "@/components/common/TheMyNav.vue";
   margin-top: 0; /* 위쪽 여백 제거 */
   margin-bottom: 0; /* 아래쪽 여백 제거 */
   background-color: aliceblue;
+  margin-bottom: 30px;
 }
 </style>

@@ -29,7 +29,7 @@ const navigateToTerms = () => {
 
 <style scoped>
 footer {
-  position: fixed;
+  /* position: fixed; */
   bottom: 0;
   left: 0;
   width: 100%;

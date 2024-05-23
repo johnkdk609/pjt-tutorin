@@ -30,7 +30,6 @@ export const useUserStore = defineStore("user", () => {
   };
 
   const updateUser = function (id) {
-    alert(user.value.menteeIntro);
     axios
       .put(REST_API + "/" + id, user.value)
       .then(() => {})

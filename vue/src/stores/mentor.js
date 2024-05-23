@@ -33,7 +33,6 @@ export const useMentorStore = defineStore("mentor", () => {
   };
 
   const updateMentor = function (id) {
-    alert(mentor.value.mentorIntro)
     axios
       .put(REST_API + "/" + id, mentor.value)
       .then(() => {})
