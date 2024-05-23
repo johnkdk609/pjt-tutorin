@@ -1,8 +1,7 @@
 <template>
-    <p></p>
   <footer>
     <div class="footer">
-      <div class="footer-item">
+      <div class="footer-item1" @click="navigateToTerms">
         <h5>이용약관 | 개인정보처리방침</h5>
       </div>
       <div class="footer-item">
@@ -18,7 +17,15 @@
   </footer>
 </template>
 
-<script setup></script>
+<script setup>
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
+const navigateToTerms = () => {
+  router.push('/my/:id/etc');
+}
+</script>
 
 <style scoped>
 footer {
@@ -43,11 +50,23 @@ footer {
   flex: 1;
   text-align: center;
   padding: 0 20px;
+  align-items: center;
+  padding-top: 5px;
+}
+
+.footer-item1 {
+  flex: 1;
+  text-align: center;
+  padding: 0 20px;
+  align-items: center;
+  cursor: pointer;
+  padding-top: 5px;
 }
 
 .items {
   display: flex;
   align-items: center;
   justify-content: center;
+  align-items: center;
 }
 </style>
