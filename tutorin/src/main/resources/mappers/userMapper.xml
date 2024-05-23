@@ -11,7 +11,7 @@
 	
 	<!-- 사용자 상세 조회 -->
 	<select id="selectOne"  resultType="User" parameterType="String">
-		SELECT id, password, email, name, nickname, phone_num AS phoneNum, date_format(create_time, '%Y-%M-%d') AS createTime, status 
+		SELECT id, password, email, name, nickname, phone_num AS phoneNum, date_format(create_time, '%Y-%M-%d') AS createTime, status , mentee_intro AS menteeIntro
 		FROM user
 		WHERE id = #{id};
 	</select>
@@ -33,7 +33,7 @@
 	<!-- 사용자 정보 수정 -->
 	<update id="updateUser" parameterType="User">
 		UPDATE user
-		SET password = #{password}, email = #{email}, name = #{name}, nickname = #{nickname} , phone_num = #{phoneNum}, status = #{status}
+		SET password = #{password}, email = #{email}, name = #{name}, nickname = #{nickname} , phone_num = #{phoneNum}, status = #{status}, mentee_intro = #{menteeIntro}
 		WHERE id = #{id};
 	</update>
 	

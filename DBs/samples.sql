@@ -67,9 +67,9 @@ INSERT INTO counsel (mentee_id, mentor_id, title, content, answer_content, statu
 -- Insert sample data into mentor table
 INSERT INTO mentor (id, status, mentor_intro, account_num, account_fee) VALUES
 ('johnKDK', '1', 'Expert in software development', 1234567890, 1000),
-('mckim', '1', 'A+ in SSAFY coding test', 9876543210, 2000),
+('mckim', '1', 'Expert in digital marketing', 9876543210, 2000),
 ('john ', '1', 'Specialist in cybersecurity', 1111222233, 1500),
 ('jane', '1', 'Professional in cloud computing', 2222333344, 1800),
 ('michael', '1', 'Consultant in AI and machine learning', 3333444455, 2500),
-('emily', '1', 'Expert in digital marketing', 4444555566, 1200),
+('emily', '1', 'Expert in offline marketing', 4444555566, 1200),
 ('daniel', '1', 'Seasoned project manager', 5555666677, 1700);

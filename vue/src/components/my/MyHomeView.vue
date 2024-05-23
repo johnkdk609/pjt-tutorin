@@ -5,8 +5,8 @@
       <h3>환영합니다, {{ loginStore.loginUser.nickname }}님</h3>
 
       <h3>☆활동 요약</h3>
-      <h4>상담 횟수 : </h4>
-      <h4 v-if="loginStore.loginUser.status===2">답변 횟수 : </h4>
+      <h4>질문 횟수 : {{ requestNum }}</h4>
+      <h4 v-if="loginStore.loginUser.status===2">답변 횟수 : {{ responseNum }} </h4>
       <h4>가입일 : {{ loginStore.loginUser.createTime }}</h4>
       
     </div>
@@ -25,17 +25,27 @@
 </template>
 
 <script setup>
-import { useRoute, useRouter } from "vue-router";
-import { ref, onMounted, onUnmounted } from "vue";
+import {computed, onMounted } from "vue";
 import { useLoginStore } from "@/stores/login";
-import { useUserStore } from "@/stores/user";
-import { useMentorStore } from "@/stores/mentor";
 import { useCounselStore } from "@/stores/counsel";
 
-const userStore = useUserStore();
 const loginStore = useLoginStore();
-const mentorStore = useMentorStore();
 const counselStore = useCounselStore();
+
+onMounted(() => {
+  counselStore.getCounselList();
+});
+
+const requestNum = computed(() => {
+  return counselStore.counselList.filter(counsel => counsel.menteeId === loginStore.loginUser.id).length;
+});
+
+const responseNum = computed(() => {
+  return counselStore.counselList.filter(counsel => counsel.mentorId === loginStore.loginUser.id).length;
+});
+
+
+
 </script>
 
 <style scoped>

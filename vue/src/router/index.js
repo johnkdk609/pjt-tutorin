@@ -67,7 +67,7 @@ const router = createRouter({
         },
         
         {
-          path: "counsel/write",
+          path: "counsel/write/:id",
           name: "writeform",
           component: WriteForm,
         },
