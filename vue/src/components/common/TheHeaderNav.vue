@@ -157,6 +157,7 @@ header {
 .home {
   width: 200px;
   margin: 12px;
+  margin: 10px;
 }
 
 .dropdown-menu {

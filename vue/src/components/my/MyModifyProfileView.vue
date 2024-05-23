@@ -44,7 +44,7 @@ onUnmounted(() => {
 const modify = () => {
   userStore.updateUser(loginStore.loginUser.id);
   mentorStore.updateMentor(loginStore.loginUser.id);
-  // alert('변경되었습니다.')
+  alert('변경되었습니다.')
 };
 </script>
 
