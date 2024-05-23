@@ -53,10 +53,11 @@
             <RouterLink
               :to="{ name: 'mentor_profile', params: { id: loginStore.loginUser.id } }"
               class="dropdown-item"
+              v-if="loginStore.loginUser.status===2"
             >
               마이프로필(멘토)
             </RouterLink>
-            <hr>
+            <hr v-if="loginStore.loginUser.status===2">
             <span
               class="dropdown-item logoutBtn"
               @click="logout"

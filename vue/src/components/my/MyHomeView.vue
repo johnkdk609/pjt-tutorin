@@ -2,23 +2,17 @@
   <div>
     <h1>마이페이지 홈</h1>
     <div class="content">
-      <h3>환영합니다, {{ loginStore.loginUser.nickname }}님</h3>
-
-      <h3>☆활동 요약</h3>
-      <h4>질문 횟수 : {{ requestNum }}</h4>
-      <h4 v-if="loginStore.loginUser.status===2">답변 횟수 : {{ responseNum }} </h4>
-      <h4>가입일 : {{ loginStore.loginUser.createTime }}</h4>
-      
-    </div>
-    <div>
-      <button type="button" class="btn btn-primary">Primary</button>
-      <button type="button" class="btn btn-secondary">Secondary</button>
-      <button type="button" class="btn btn-success">Success</button>
-      <button type="button" class="btn btn-danger">Danger</button>
-      <button type="button" class="btn btn-warning">Warning</button>
-      <button type="button" class="btn btn-info">Info</button>
-      <button type="button" class="btn btn-light">Light</button>
-      <button type="button" class="btn btn-dark">Dark</button>
+      <br>
+      <div class="box">
+        <h3>환영합니다, {{ loginStore.loginUser.nickname }}님</h3>
+        <br>
+        <h4>활동 요약</h4>
+        <h5>질문 횟수 : {{ requestNum }}</h5>
+        <h5 v-if="loginStore.loginUser.status===2">답변 횟수 : {{ responseNum }} </h5>
+        <h5>가입일 : {{ loginStore.loginUser.createTime }}</h5>
+        
+      </div>
+      <br>
     </div>
     
   </div>
@@ -49,9 +43,14 @@ const responseNum = computed(() => {
 </script>
 
 <style scoped>
+.box {
+  margin: 2%;
+  padding: 3%;
+  background-color: white;
+  text-align: left;
+}
 .content {
   background-color: rgb(255, 254, 214);
-  margin: 20px;
-  height: 500px;
+  margin: 2%;
 }
 </style>

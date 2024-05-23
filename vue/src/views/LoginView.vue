@@ -10,7 +10,7 @@
       </div>
       <div>
         <span>Password&nbsp;</span>
-        <input type="text" v-model="password" />
+        <input type="password" v-model="password" />
         <p></p>
         <div class="save-id">
           <input type="checkbox" value="save" /><label>아이디 저장</label>

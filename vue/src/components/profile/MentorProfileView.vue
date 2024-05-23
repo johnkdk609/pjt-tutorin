@@ -8,6 +8,7 @@
     <button @click="toWrite">
       <h3>상담 신청하기</h3>
     </button>
+    <br>
   </div>
 </template>
 

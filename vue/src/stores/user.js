@@ -42,7 +42,8 @@ export const useUserStore = defineStore("user", () => {
     axios
       .delete(REST_API + "/" + id)
       .then(() => {
-        alert("회원 탈퇴가 완료되었습니다");
+        alert("회원 탈퇴가 완료되었습니다. 이용해 주셔서 감사합니다.");
+        router.push("/"); // Redirect to login after logout
       })
       .catch((e) => {
         alert("회원 탈퇴에 실패하였습니다." + e);
