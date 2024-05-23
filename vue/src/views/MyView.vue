@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>마이페이지입니다</h1>
+    <h1>&nbsp;&nbsp;마이페이지입니다</h1>
     <div class="my">
       <TheMyNav class="nav" />
       <div class="router-view">

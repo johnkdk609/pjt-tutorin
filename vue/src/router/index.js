@@ -35,7 +35,6 @@ import DoneFormR from "@/components/counsel/DoneFormR.vue";
 import ViewWithHeader from "@/views/ViewWithHeader.vue";
 import ViewWithoutHeader from "@/views/ViewWithoutHeader.vue";
 import { useLoginStore } from '@/stores/login'
-import PrivateView from "@/views/PrivateView.vue";
 import ChatgptView from "@/views/ChatgptView.vue"
 
 const router = createRouter({
@@ -54,11 +53,6 @@ const router = createRouter({
           path: "login",
           name: "login",
           component: LoginView,
-        },
-        {
-          path: '/private',
-          name: 'private',
-          component: PrivateView
         },
         {
           path: "regist",

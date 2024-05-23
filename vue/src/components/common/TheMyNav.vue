@@ -5,7 +5,7 @@
       <RouterLink :to="{ name: 'modify', params: { id: loginStore.loginUser.id } }">개인 정보 수정</RouterLink>
       <RouterLink :to="{ name: 'modifyprofile', params: { id: loginStore.loginUser.id } }">프로필 수정</RouterLink>
       <RouterLink :to="{ name: 'reqwait', params: { id: loginStore.loginUser.id } }">상담 신청 내역</RouterLink>
-      <RouterLink :to="{ name: 'reswait', params: { id: loginStore.loginUser.id } }">상담 수령 내역</RouterLink>
+      <RouterLink :to="{ name: 'reswait', params: { id: loginStore.loginUser.id } }" v-if="loginStore.loginUser.status===2">상담 수령 내역</RouterLink>
       <RouterLink :to="{ name: 'etc', params: { id: loginStore.loginUser.id } }">기타</RouterLink>
     </nav>
   </div>

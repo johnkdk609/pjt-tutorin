@@ -24,6 +24,7 @@
     <div class="button" onclick="history.back()">
       <h3>뒤로가기</h3>
     </div>
+    <br>
   </div>
 </template>
 
