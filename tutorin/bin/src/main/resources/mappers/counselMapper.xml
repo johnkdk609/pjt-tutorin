@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pjt.tutorin.model.dao.CounselDao">
+<!-- mapper와 interface를 사용할 것.에 제약을 걸은 것 -->
+
+	<!-- 전체 조회  -->
+	<select id="getCounsels"  resultType="Counsel" >
+		SELECT id, mentee_id as menteeId, mentor_id as mentorId, status, title, content, video, answer_content AS answerContent, answer_content AS answerContent, answer_video AS answerVideo, question1, answer1, question2, answer2, question3, answer3, review_star as reviewStar, review_content as reviewContent, create_time AS createTime, accept_time AS acceptTime, answer_time AS answerTime, feedback_time AS feedbackTime 
+		FROM counsel
+		ORDER BY create_time DESC;
+	</select>
+
+	<!-- 상세 조회 -->
+	<select id="selectCounsel"  resultType="Counsel" parameterType="int">
+		<!-- SELECT *  -->
+		SELECT id, mentee_id as menteeId, mentor_id as mentorId, status, title, content, video, answer_content AS answerContent, answer_content AS answerContent, answer_video AS answerVideo, question1, answer1, question2, answer2, question3, answer3, review_star as reviewStar, review_content as reviewContent, create_time AS createTime, accept_time AS acceptTime, answer_time AS answerTime, feedback_time AS feedbackTime
+		FROM counsel
+		WHERE id = #{id};
+	</select>
+	
+	<!--등록 -->
+	<insert id="insertCounsel" parameterType="Counsel" keyProperty="id" useGeneratedKeys="true">
+	<!-- 이상한 특성 2개: id 기본값이 0인데 입력받은 id로 적용되게 바꿔줌. -->
+		INSERT INTO counsel ( mentee_id, mentor_id, title, content, video)
+		VALUES (#{menteeId}, #{mentorId}, #{title} , #{content}, #{video});
+	</insert>
+	
+	<!-- 수정 -->
+	<update id="acceptCounsel" parameterType="Counsel">
+		UPDATE counsel
+		SET answer_time = DATE_ADD(now(), INTERVAL 3 DAY), status = 2
+		WHERE id = #{id};
+	</update>
+	
+	<update id="answerCounsel" parameterType="Counsel">
+		UPDATE counsel
+		SET answer_content = #{answerContent}, feedback_time = DATE_ADD(now(), INTERVAL 7 DAY), status = 3
+		WHERE id = #{id};
+	</update>
+	
+	<update id="feedbackQuestionCounsel" parameterType="Counsel">
+		UPDATE counsel
+		SET 
+		  question1 = CASE
+		                WHEN question1 IS NULL THEN #{question1}
+		                ELSE question1
+		              END,
+		  question2 = CASE
+		                WHEN question1 IS NOT NULL AND question2 IS NULL THEN #{question2}
+		                ELSE question2
+		              END,
+		  question3 = CASE
+		                WHEN question1 IS NOT NULL AND question2 IS NOT NULL AND question3 IS NULL THEN #{question3}
+		                ELSE question3
+		              END,
+		  status = 4
+		WHERE id = #{id}
+	</update>
+	
+	<update id="feedbackAnswerCounsel" parameterType="Counsel">
+		UPDATE counsel
+		SET 
+		  answer1 = CASE
+		                WHEN answer1 IS NULL THEN #{answer1}
+		                ELSE answer1
+		              END,
+		  answer2 = CASE
+		                WHEN answer1 IS NOT NULL AND answer2 IS NULL THEN #{answer2}
+		                ELSE answer2
+		              END,
+		  answer3 = CASE
+		                WHEN answer1 IS NOT NULL AND answer2 IS NOT NULL AND answer3 IS NULL THEN #{answer3}
+		                ELSE answer3
+		              END,
+		  status = CASE
+		                WHEN answer1 IS NOT NULL AND answer2 IS NOT NULL AND answer3 IS NOT NULL THEN 5
+		                ELSE 3
+		              END
+		WHERE id = #{id};
+
+	</update>
+	
+	<update id="reviewCounsel" parameterType="Counsel">
+		UPDATE counsel
+		SET review_star = #{reviewStar}, review_Content = #{reviewContent}
+		WHERE id = #{id};
+	</update>
+	
+	<!-- 거절: status=6, 취소: status=7 -->
+	<update id="updateStatusCounsel" parameterType="Counsel">
+		UPDATE counsel
+		SET status = #{status}
+		WHERE id = #{id};
+	</update>
+	
+	
+
+	<!--삭제 -->
+	<delete id="deleteCounsel" parameterType="int">
+		DELETE FROM counsel
+		WHERE id = #{id};
+	</delete>
+	
+	
+	
+
+</mapper>
