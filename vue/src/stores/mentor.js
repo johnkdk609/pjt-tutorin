@@ -24,7 +24,6 @@ export const useMentorStore = defineStore("mentor", () => {
   // { "id": "andrew"}
 
   const postMentor = function () {
-    console.log("mentor id : " + mentor.value.id);
     axios
       .post(REST_API, mentor.value)
       .then(() => {})
@@ -34,6 +33,7 @@ export const useMentorStore = defineStore("mentor", () => {
   };
 
   const updateMentor = function (id) {
+    alert(mentor.value.mentorIntro)
     axios
       .put(REST_API + "/" + id, mentor.value)
       .then(() => {})

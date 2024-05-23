@@ -28,8 +28,6 @@
               class="profile-image"
             >
           </div>
-
-          <button @click="tokentest">tokencheck</button>
           
           <div v-if="!loginStore.accessToken">
             <RouterLink to="/login" class="right">로그인</RouterLink> |
@@ -44,18 +42,21 @@
             >
               마이페이지
             </RouterLink>
+            <hr>
             <RouterLink
               :to="{ name: 'mentee_profile', params: { id: loginStore.loginUser.id } }"
               class="dropdown-item"
             >
               마이프로필
             </RouterLink>
+            <hr>
             <RouterLink
               :to="{ name: 'mentor_profile', params: { id: loginStore.loginUser.id } }"
               class="dropdown-item"
             >
               마이프로필(멘토)
             </RouterLink>
+            <hr>
             <span
               class="dropdown-item logoutBtn"
               @click="logout"

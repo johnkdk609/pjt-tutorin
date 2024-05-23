@@ -3,9 +3,6 @@
     <h1>상담 신청하기</h1>
     <div class="content">
       <h3>내용</h3>
-      <input type="text" placeholder="누구가(수정예정)" v-model="store.counsel.menteeId" />
-      |
-      <input type="text" placeholder="누구에게(수정예정)" v-model="store.counsel.mentorId" />
       <p></p>
       <input type="text" placeholder="제목" v-model="store.counsel.title" />
       <p></p>
@@ -26,11 +23,16 @@
 
 <script setup>
 import { useCounselStore } from "@/stores/counsel";
-import { useRouter } from "vue-router";
+import { useLoginStore } from "@/stores/login";
+import { useRouter, useRoute } from "vue-router";
 const store = useCounselStore();
+const loginStore = useLoginStore();
 const router = useRouter();
+const route = useRoute();
 
 const send = () => {
+  store.counsel.menteeId = loginStore.loginUser.id;
+  store.counsel.mentorId = route.params.id;
   store.postCounsel(router); // 라우터 인스턴스를 전달하여 메서드 내에서 사용
 };
 </script>

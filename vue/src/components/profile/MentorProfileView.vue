@@ -1,20 +1,49 @@
 <template>
   <div>
-    <h1>mentor프로필</h1>
-    <div class="content">내용</div>
-    <button onclick="location.href='http://localhost:5173/counsel/write';">
+    <div class="content">
+      <img src="@/assets/main.jpg" alt="" style="width: 200px; margin: 30px; border-radius: 50%;" />
+      <h1>Mentor {{ mentorStore.mentor.id }}</h1>
+      <h5>자기소개 : {{ mentorStore.mentor.mentorIntro }}</h5>
+    </div>
+    <button @click="toWrite">
       <h3>상담 신청하기</h3>
     </button>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import {useRoute, useRouter} from "vue-router";
+import {useUserStore} from "@/stores/user";
+import {useMentorStore} from "@/stores/mentor";
+import { useLoginStore } from "@/stores/login";
+
+const userStore = useUserStore();
+const mentorStore = useMentorStore();
+const loginStore = useLoginStore();
+const route = useRoute();
+const router = useRouter();
+
+userStore.getUser(route.params.id);
+mentorStore.getMentor(route.params.id);
+
+
+const toWrite = () => {
+  if(loginStore.loginUser.id){
+    router.push({ name: 'writeform', params: route.params.id })
+
+  } else{
+    alert('로그인을 먼저 해 주세요.')
+    router.push({ name: 'login'})
+  }
+}
+</script>
 
 <style scoped>
 .content {
   background-color: aliceblue;
   text-align: center; /* 가운데 정렬 */
-  height: 500px;
+  height: 600px;
+  margin: 30px;
 }
 
 button {

@@ -1,16 +1,9 @@
 <template>
   <div>
     <header>
-      <RouterLink to="/" class="left">
-          <img  
-            @click="home" 
-            src="@/assets/TutorInLogo.png" 
-            alt="home button" 
-            class="home"
-          >
-        </RouterLink>
+      <img src="@/assets/TutorInLogo.png" alt="home button" class="home left" />
     </header>
-    <hr>
+    <hr />
   </div>
 </template>
 
