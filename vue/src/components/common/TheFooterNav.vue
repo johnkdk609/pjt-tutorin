@@ -2,7 +2,18 @@
     <p></p>
   <footer>
     <div class="footer">
-      <h3>(footer)찾아오는 길</h3>
+      <div class="footer-item">
+        <h5>이용약관 | 개인정보처리방침</h5>
+      </div>
+      <div class="footer-item">
+        <div class="items">
+          <h5>CONTACT | </h5>  
+          <span>
+            &nbsp;&nbsp;dkkim@ssafy.com<br>
+            &nbsp;&nbsp;mckim@ssafy.com
+          </span>
+        </div>
+      </div>
     </div>
   </footer>
 </template>
@@ -26,5 +37,17 @@ footer {
   justify-content: center;
   background-color: rgba(57, 64, 75, 0.5);
   height: 70px;
+}
+
+.footer-item {
+  flex: 1;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.items {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>

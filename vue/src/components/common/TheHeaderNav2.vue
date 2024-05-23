@@ -1,7 +1,14 @@
 <template>
   <div>
     <header>
-      <span class="header-text">Tutorin</span>
+      <RouterLink to="/" class="left">
+          <img  
+            @click="home" 
+            src="@/assets/TutorInLogo.png" 
+            alt="home button" 
+            class="home"
+          >
+        </RouterLink>
     </header>
     <hr>
   </div>
@@ -27,5 +34,10 @@ header {
 
 hr {
   width: 90%;
+}
+
+.home {
+  width: 200px;
+  margin: 12px;
 }
 </style>
