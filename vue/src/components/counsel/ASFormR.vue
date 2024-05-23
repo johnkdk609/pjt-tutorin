@@ -1,15 +1,33 @@
 <template>
     <div>
-        <h2>추가질문(mentee)</h2>
-        <h4>상담 제목: {{ store.counsel.title }}</h4>
-        <p v-if="store.counsel.question1">질문1: {{ store.counsel.question1 }}</p>
-        <p v-if="store.counsel.answer1">답변1: {{ store.counsel.answer1 }}</p>
-        <p v-if="store.counsel.question2">질문2: {{ store.counsel.question2 }}</p>
-        <p v-if="store.counsel.answer2">답변2: {{ store.counsel.answer2 }}</p>
-        <p v-if="store.counsel.question3">질문3: {{ store.counsel.question3 }}</p>
-        <p v-if="store.counsel.answer3">답변3: {{ store.counsel.answer3 }}</p>
-        <input v-if="store.counsel.status === 4" type="text" placeholder="답변을 등록해주세요" v-model="input" />
-        <button v-if="store.counsel.status === 4" @click="submitAnswer">답변 등록</button>
+        <h4>추가질문</h4>
+        <h5>상담 제목: {{ store.counsel.title }}</h5>
+
+        <div class="center">
+            <div class="chatbox">
+                <div v-if="store.counsel.question1 || store.counsel.answer1" class="chat">
+                    <p v-if="store.counsel.question1" class="question">{{ store.counsel.question1 }}</p>
+                    <p v-if="store.counsel.answer1" class="answer">{{ store.counsel.answer1 }}</p>
+                </div>
+                <div v-if="store.counsel.question2 || store.counsel.answer2" class="chat">
+                    <p v-if="store.counsel.question2" class="question">{{ store.counsel.question2 }}</p>
+                    <p v-if="store.counsel.answer2" class="answer">{{ store.counsel.answer2 }}</p>
+                </div>
+                <div v-if="store.counsel.question3 || store.counsel.answer3" class="chat">
+                    <p v-if="store.counsel.question3" class="question">{{ store.counsel.question3 }}</p>
+                    <p v-if="store.counsel.answer3" class="answer">{{ store.counsel.answer3 }}</p>
+                </div>
+                <div v-if="store.counsel.status === 4" class="input-group mt-3">
+                    <input type="text" placeholder="질문을 등록해주세요" v-model="input" class="form-control" />
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" @click="submitAnswer">질문 등록</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-right mt-2" style="color: rgb(212, 212, 212);">
+            counsel id : {{ store.counsel.id }}
+        </div>
     </div>
 </template>
 
@@ -59,4 +77,41 @@ const submitAnswer = async () => {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.chatbox {
+    width: 80%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.answer {
+    text-align: right;
+    background-color: #ffe600;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 5px 0;
+}
+
+.question {
+    text-align: left;
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 5px 0;
+}
+
+.input-group {
+    display: flex;
+}
+
+.input-group-append {
+    margin-left: 5px;
+}
+</style>

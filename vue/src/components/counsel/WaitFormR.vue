@@ -1,12 +1,32 @@
 <template>
   <div>
-    <h2>제목 : {{ store.counsel.title }}</h2>
-    <span>멘티 : {{ store.counsel.menteeId }}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span>
-    <span>멘토 : {{ store.counsel.mentorId }}</span>
-    <p>질문 내용 : {{ store.counsel.content }}</p>
-    <button class="accept" @click="accept">수락</button>
-    <button class="reject" @click="reject">거절</button>
-    <h5 style="text-align: right; vertical-align: top;">id : {{ store.counsel.id }}</h5>
+    <h4>추가질문</h4>
+    <h5>상담 제목: {{ store.counsel.title }}</h5>
+    <div class="center">
+      <div class="chatbox">
+        <div v-if="store.counsel.question1 || store.counsel.answer1" class="chat">
+          <p v-if="store.counsel.question1" class="question">{{ store.counsel.question1 }}</p>
+          <p v-if="store.counsel.answer1" class="answer">{{ store.counsel.answer1 }}</p>
+        </div>
+        <div v-if="store.counsel.question2 || store.counsel.answer2" class="chat">
+          <p v-if="store.counsel.question2" class="question">{{ store.counsel.question2 }}</p>
+          <p v-if="store.counsel.answer2" class="answer">{{ store.counsel.answer2 }}</p>
+        </div>
+        <div v-if="store.counsel.question3 || store.counsel.answer3" class="chat">
+          <p v-if="store.counsel.question3" class="question">{{ store.counsel.question3 }}</p>
+          <p v-if="store.counsel.answer3" class="answer">{{ store.counsel.answer3 }}</p>
+        </div>
+        <div v-if="store.counsel.status === 3" class="input-group mt-3">
+          <input type="text" placeholder="질문을 등록해주세요" v-model="input" class="form-control" />
+          <div class="input-group-append">
+            <button class="btn btn-primary" @click="submitQuestion">질문 등록</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-right mt-2" style="color: rgb(212, 212, 212);">
+      counsel id : {{ store.counsel.id }}
+    </div>
   </div>
 </template>
 
@@ -39,24 +59,20 @@ const reject = () => {
 </script>
 
 <style scoped>
-.accept {
-  width: 20%;
-  background-color: yellowgreen;
-}
-
-.reject {
-  width: 20%;
-  background-color: red;
-  color: rgb(0, 0, 0);
+.bg-gray {
+  background-color: rgb(206, 206, 206);
+  color: rgb(80, 80, 80);
+  text-align: center;
 }
 
 button {
   cursor: pointer;
   margin: 10px;
+  width: 20%;
 }
 
-button:hover {
-  background-color: rgb(173, 173, 173); /* 마우스를 올렸을 때의 배경색 */
-  color: rgb(146, 146, 146);
+td {
+  padding: 5px;
+  width: 10%;
 }
 </style>
