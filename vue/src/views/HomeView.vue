@@ -26,7 +26,7 @@ import ChatgptView from '@/views/ChatgptView.vue'
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 300px; /* Full viewport height to center vertically */
+  width: 70%; /* Full viewport height to center vertically */
 }
 
 .fixed-top {
@@ -38,6 +38,10 @@ import ChatgptView from '@/views/ChatgptView.vue'
 
 .gpt {
   text-align: center;
+  color: white;
+  background-color: black;
+  height: 388px;
+  overflow-y: auto;
 }
 
 .videos{
